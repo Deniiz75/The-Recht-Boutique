@@ -17,6 +17,29 @@
  *     Nederlandse Orde van Advocaten is bevestigd.
  */
 
+/**
+ * Canonieke basis-URL. Bepaalt metadataBase, alle canonicals, og:url,
+ * sitemap.xml, robots.txt en de @id's in de JSON-LD. Een verkeerde waarde
+ * hier zet foute canonicals op élke pagina, dus hardcoden we hem niet.
+ *
+ * Volgorde:
+ *  1. NEXT_PUBLIC_SITE_URL — zet deze zodra het eigen domein live is.
+ *     Dit is de enige juiste waarde voor productie op een eigen domein.
+ *  2. VERCEL_PROJECT_PRODUCTION_URL — door Vercel geïnjecteerd. Wijst altijd
+ *     naar het productiedomein van het project (dus niet naar de wisselende
+ *     preview-URL), waardoor previews niet hun eigen canonical claimen.
+ *  3. localhost — lokale ontwikkeling.
+ */
+function resolveSiteUrl(): string {
+  const explicit = process.env.NEXT_PUBLIC_SITE_URL?.trim();
+  if (explicit) return explicit.replace(/\/+$/, '');
+
+  const vercel = process.env.VERCEL_PROJECT_PRODUCTION_URL?.trim();
+  if (vercel) return `https://${vercel.replace(/\/+$/, '')}`;
+
+  return 'http://localhost:3000';
+}
+
 export const site = {
   name: 'The Recht Boutique',
   /** Gebruikt in <title> en OG-tags. */
@@ -24,8 +47,8 @@ export const site = {
   description:
     'The Recht Boutique biedt persoonlijk juridisch advies aan ondernemers en particulieren. ' +
     'Ondernemingsrecht, contractenrecht, privaatrecht en geschillen — helder uitgelegd, strategisch waar het telt.',
-  /** TODO: vervang door het definitieve domein zodra bekend. Zonder trailing slash. */
-  url: 'https://the-recht-boutique.vercel.app',
+  /** Zie resolveSiteUrl(). Nooit hardcoden — zet NEXT_PUBLIC_SITE_URL. */
+  url: resolveSiteUrl(),
   locale: 'nl_NL',
   lang: 'nl',
 } as const;
@@ -146,8 +169,15 @@ export const services = [
   },
 ] as const;
 
-/** Werkwijze — vier stappen. */
-export const process = [
+/**
+ * Werkwijze — vier stappen.
+ *
+ * Heet bewust `processSteps` en niet `process`: een module-scope `export const
+ * process` overschaduwt binnen dit bestand de globale Node `process`, waardoor
+ * `process.env` stilzwijgend naar deze array verwijst in plaats van naar de
+ * omgevingsvariabelen. Niet hernoemen naar `process`.
+ */
+export const processSteps = [
   {
     step: '01',
     title: 'Kennismaken',

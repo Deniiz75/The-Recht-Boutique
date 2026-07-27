@@ -127,7 +127,7 @@ uit JSON-LD, `tel:`- en `mailto:`-links. Vul ze in vóór publicatie.
 
 | #  | Veld in `src/content/site.ts` | Waarde                           | Huidige placeholder             |
 | -- | ----------------------------- | -------------------------------- | ------------------------------- |
-| 1  | `site.url`                    | Definitief domein, zonder `/`    | `the-recht-boutique.vercel.app` |
+| 1  | *(env)* `NEXT_PUBLIC_SITE_URL` | Definitief domein, zonder `/`   | leeg → valt terug op Vercel-URL |
 | 2  | `contact.phoneDisplay`        | Telefoonnummer (weergave)        | `TODO: +31 (0)00 000 0000`      |
 | 3  | `contact.phoneHref`           | Zelfde nummer in E.164           | `tel:+310000000000`             |
 | 4  | `contact.email`               | E-mailadres                      | `TODO: info@therechtboutique.nl` |
@@ -139,6 +139,13 @@ uit JSON-LD, `tel:`- en `mailto:`-links. Vul ze in vóór publicatie.
 
 Let op bij nummer 2 en 3: `phoneHref` bevat géén `TODO:`-markering maar is wél een
 placeholder. De site toont het nummer pas als link zodra `phoneDisplay` echt is.
+
+Nummer 1 staat bewust níet in `site.ts` maar in een omgevingsvariabele. Deze waarde
+bepaalt élke canonical-tag, `og:url`, `sitemap.xml`, `robots.txt` en de JSON-LD `@id`;
+een fout hier zet foutieve canonicals op alle 19 routes. Zolang de variabele leeg is,
+gebruikt de site automatisch `VERCEL_PROJECT_PRODUCTION_URL` (het productiedomein van
+het Vercel-project), zodat previews niet hun eigen canonical claimen. Zet
+`NEXT_PUBLIC_SITE_URL` zodra het eigen domein live staat.
 
 Daarnaast vóór livegang:
 

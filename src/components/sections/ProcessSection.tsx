@@ -1,6 +1,6 @@
 import Link from 'next/link';
 import { ArrowRight } from 'lucide-react';
-import { process } from '@/content/site';
+import { processSteps } from '@/content/site';
 import { Container } from '@/components/ui/Container';
 import { SectionHeading } from '@/components/ui/SectionHeading';
 
@@ -52,7 +52,7 @@ export function ProcessSection({
           </div>
 
           <ol className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
-            {process.map((step) => (
+            {processSteps.map((step) => (
               <li key={step.step} className="reveal relative border-t border-ink/25 pt-9">
                 <span
                   aria-hidden="true"

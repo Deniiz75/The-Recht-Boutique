@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
-import { process } from '@/content/site';
+import { processSteps } from '@/content/site';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { ButtonLink } from '@/components/ui/ButtonLink';
@@ -18,7 +18,7 @@ export const metadata: Metadata = pageMetadata({
   path: '/werkwijze',
 });
 
-/** Expanded toelichting per stap, gekoppeld aan `process` uit site.ts. */
+/** Expanded toelichting per stap, gekoppeld aan `processSteps` uit site.ts. */
 const details: Record<string, { detail: string; points: readonly string[] }> = {
   '01': {
     detail:
@@ -77,7 +77,7 @@ export default function WerkwijzePage() {
         <Container>
           <div className="py-16 lg:py-24">
             <ol className="border-t border-ink/25">
-              {process.map((step) => {
+              {processSteps.map((step) => {
                 const extra = details[step.step];
                 return (
                   <li
