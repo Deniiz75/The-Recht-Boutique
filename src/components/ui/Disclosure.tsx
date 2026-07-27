@@ -1,4 +1,4 @@
-import { ChevronRight } from 'lucide-react';
+import { ChevronDown } from 'lucide-react';
 
 type DisclosureProps = {
   question: string;
@@ -23,7 +23,7 @@ export function Disclosure({ question, answer, index }: DisclosureProps) {
         <span className="flex-1 font-display text-[1.1875rem] leading-snug sm:text-[1.3125rem]">
           {question}
         </span>
-        <ChevronRight
+        <ChevronDown
           aria-hidden="true"
           className="disclosure-sign mt-1 h-4 w-4 shrink-0 text-rose transition-transform duration-300"
         />

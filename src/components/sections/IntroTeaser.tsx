@@ -5,7 +5,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 
 export function IntroTeaser() {
   return (
-    <section aria-labelledby="intro-titel" className="bg-white">
+    <section aria-labelledby="intro-titel" className="bg-canvas">
       <Container>
         <div className="grid gap-10 border-b border-rose/12 py-20 lg:grid-cols-12 lg:gap-12 lg:py-28">
           <div className="reveal lg:col-span-4">

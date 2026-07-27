@@ -15,7 +15,7 @@ type PageHeaderProps = {
 /** The opening masthead of every interior page. */
 export function PageHeader({ eyebrow, title, lead, above, children }: PageHeaderProps) {
   return (
-    <section className="relative overflow-hidden border-b border-rose/12 bg-white">
+    <section className="relative overflow-hidden border-b border-rose/12 bg-canvas">
       {/* Faint arch outline anchoring the masthead. */}
       <span
         aria-hidden="true"

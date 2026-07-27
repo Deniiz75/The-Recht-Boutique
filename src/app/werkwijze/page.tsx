@@ -73,7 +73,7 @@ export default function WerkwijzePage() {
         <ButtonLink href="/contact">Plan een kennismaking</ButtonLink>
       </PageHeader>
 
-      <section aria-label="De vier stappen" className="bg-white">
+      <section aria-label="De vier stappen" className="bg-canvas">
         <Container>
           <div className="py-16 lg:py-24">
             <ol className="border-t border-rose/15">

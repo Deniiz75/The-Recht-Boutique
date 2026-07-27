@@ -33,7 +33,7 @@ export default function FaqPage() {
         lead="Staat uw vraag er niet bij? Stel hem gerust — een eerste gesprek is vrijblijvend."
       />
 
-      <section aria-label="Vragen en antwoorden" className="bg-white">
+      <section aria-label="Vragen en antwoorden" className="bg-canvas">
         <Container>
           <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
             <div className="lg:col-span-8">

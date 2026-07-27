@@ -38,7 +38,7 @@ export default function ContactPage() {
         lead="Vertel kort wat er speelt. U hoort binnen één werkdag van ons wat wij voor u kunnen betekenen — en of een gesprek zinvol is."
       />
 
-      <section aria-label="Contactgegevens en formulier" className="bg-white">
+      <section aria-label="Contactgegevens en formulier" className="bg-canvas">
         <Container>
           <div className="grid gap-14 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
             <div className="lg:col-span-7">

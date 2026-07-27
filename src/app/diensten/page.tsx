@@ -32,7 +32,7 @@ export default function DienstenPage() {
         lead="Voor ondernemers en particulieren. Kies het gebied dat bij uw vraag past — of neem contact op als u niet zeker weet waar uw situatie thuishoort."
       />
 
-      <section aria-label="Overzicht van praktijkgebieden" className="bg-white">
+      <section aria-label="Overzicht van praktijkgebieden" className="bg-canvas">
         <Container>
           <div className="py-16 lg:py-24">
             <ul className="grid gap-x-14 gap-y-16 lg:grid-cols-2">
@@ -41,7 +41,7 @@ export default function DienstenPage() {
                   <article className="group relative flex h-full flex-col border-t border-rose/15 pt-10">
                     <span
                       aria-hidden="true"
-                      className="absolute -top-2.5 left-0 bg-white pr-3 font-display text-lg leading-none text-rose tabular-nums"
+                      className="absolute -top-2.5 left-0 bg-canvas pr-3 font-display text-lg leading-none text-rose tabular-nums"
                     >
                       {String(index + 1).padStart(2, '0')}
                     </span>
@@ -93,7 +93,7 @@ export default function DienstenPage() {
         </Container>
       </section>
 
-      <ProcessSection surface="white" withLink />
+      <ProcessSection surface="canvas" withLink />
       <ContactCta uid="diensten-cta" />
     </>
   );

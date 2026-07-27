@@ -5,17 +5,17 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 type PrinciplesSectionProps = {
   /** Home page numbers its sections; interior pages do not. */
   index?: string;
-  surface?: 'white' | 'cream';
+  surface?: 'canvas' | 'cream';
 };
 
 /* Body copy switches to text-dark on cream: text-medium measures 4.54:1 there
    and only 0.04 above AA, where on white it is a comfortable 7.16:1. */
 const surfaces = {
-  white: { section: 'bg-white', chip: 'bg-white', body: 'text-text-medium' },
+  canvas: { section: 'bg-canvas', chip: 'bg-canvas', body: 'text-text-medium' },
   cream: { section: 'bg-cream', chip: 'bg-cream', body: 'text-text-dark' },
 } as const;
 
-export function PrinciplesSection({ index, surface = 'white' }: PrinciplesSectionProps) {
+export function PrinciplesSection({ index, surface = 'canvas' }: PrinciplesSectionProps) {
   const tone = surfaces[surface];
 
   return (

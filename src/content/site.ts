@@ -275,6 +275,19 @@ export const faq = [
   },
 ] as const;
 
+/**
+ * Trust-indicator boven de H1 in de hero.
+ *
+ * Bewust twee toezeggingen over dienstverlening, geen meetbare claims: beide
+ * staan al zo in `faq` hierboven ("Wij reageren binnen één werkdag" en "Het
+ * kennismakingsgesprek is vrijblijvend en kosteloos"). Zet hier niets bij dat
+ * niet elders op de site wordt waargemaakt — zie de kop van dit bestand.
+ */
+export const trustPoints = [
+  'Binnen één werkdag reactie',
+  'Vrijblijvend eerste gesprek',
+] as const;
+
 /** Hoofdnavigatie. */
 export const nav = [
   { href: '/over-ons', label: 'Over ons' },

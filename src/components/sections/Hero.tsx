@@ -1,4 +1,5 @@
-import { site, services } from '@/content/site';
+import { Check } from 'lucide-react';
+import { site, services, trustPoints } from '@/content/site';
 import { Container } from '@/components/ui/Container';
 import { Eyebrow } from '@/components/ui/Eyebrow';
 import { ArchFrame } from '@/components/ui/ArchFrame';
@@ -25,8 +26,29 @@ export function Hero() {
               Juridisch adviesbureau
             </Eyebrow>
 
+            {/* Trust indicator. Sits between the eyebrow and the H1 and is
+                deliberately quieter than both: mono, 10px, text-medium
+                (6.93:1 on canvas). Every point here is one the site makes
+                good on elsewhere — see the note on trustPoints in site.ts. */}
+            <ul
+              className="rise mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-mono text-[0.625rem] tracking-[0.14em] text-text-medium uppercase"
+              style={{ animationDelay: '45ms' }}
+            >
+              {trustPoints.map((point, index) => (
+                <li key={point} className="flex items-center gap-2">
+                  {index > 0 ? (
+                    <span aria-hidden="true" className="-ml-2 hidden text-rose/50 sm:inline">
+                      ·
+                    </span>
+                  ) : null}
+                  <Check aria-hidden="true" className="h-3 w-3 shrink-0 text-rose-dark" />
+                  {point}
+                </li>
+              ))}
+            </ul>
+
             <h1
-              className="rise mt-7 font-display text-display font-medium text-balance"
+              className="rise mt-6 font-display text-display font-medium text-balance"
               style={{ animationDelay: '90ms' }}
             >
               <span className="block">Persoonlijk</span>

@@ -7,24 +7,24 @@ type ServiceCardProps = {
   /** Two-digit index rendered on the hairline. */
   index: string;
   /** The section background, so the number can straddle the rule cleanly. */
-  surface?: 'white' | 'cream';
+  surface?: 'canvas' | 'cream';
 };
 
 /* Body copy switches to text-dark on cream: text-medium measures 4.54:1 there
    and only 0.04 above AA, where on white it is a comfortable 7.16:1. */
 const surfaces = {
-  white: { chip: 'bg-white', body: 'text-text-medium' },
+  canvas: { chip: 'bg-canvas', body: 'text-text-medium' },
   cream: { chip: 'bg-cream', body: 'text-text-dark' },
 } as const;
 
 /** A practice area, opened by a mono numeral sitting on the top hairline. */
-export function ServiceCard({ service, index, surface = 'white' }: ServiceCardProps) {
+export function ServiceCard({ service, index, surface = 'canvas' }: ServiceCardProps) {
   const tone = surfaces[surface];
 
   return (
     <Link
       href={`/diensten/${service.slug}`}
-      className="group relative flex h-full flex-col border-t border-rose/15 pt-9 pb-2 transition-colors hover:border-rose-dark"
+      className="card-lift group relative flex h-full flex-col border-t border-rose/15 pt-9 pb-2 hover:border-rose-dark"
     >
       <span
         aria-hidden="true"

@@ -101,7 +101,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         </div>
       </PageHeader>
 
-      <section aria-labelledby="onderwerpen-titel" className="bg-white">
+      <section aria-labelledby="onderwerpen-titel" className="bg-canvas">
         <Container>
           <div className="grid gap-14 py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
             <div className="lg:col-span-7">
@@ -167,7 +167,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         </Container>
       </section>
 
-      <section aria-labelledby="andere-titel" className="border-t border-rose/12 bg-white">
+      <section aria-labelledby="andere-titel" className="border-t border-rose/12 bg-canvas">
         <Container>
           <div className="py-20 lg:py-24">
             <div className="reveal">
@@ -183,7 +183,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
                   <ServiceCard
                     service={other}
                     index={String(index + 1).padStart(2, '0')}
-                    surface="white"
+                    surface="canvas"
                   />
                 </li>
               ))}

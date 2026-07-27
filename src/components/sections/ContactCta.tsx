@@ -46,7 +46,7 @@ export function ContactCta({
             <p className="reveal mt-6 max-w-xl text-lead text-white/75">{text}</p>
 
             <div className="reveal mt-10 flex flex-col gap-3 sm:flex-row sm:items-center">
-              <ButtonLink href="/contact" variant="onink">
+              <ButtonLink href="/contact" variant="ondark">
                 Stuur een bericht
               </ButtonLink>
               {phone ? (

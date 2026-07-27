@@ -50,7 +50,7 @@ export default function OverOnsPage() {
         lead="Wij zijn een klein juridisch adviesbureau. Dat is geen tussenfase op weg naar iets groters, maar de vorm die past bij het werk dat wij willen leveren."
       />
 
-      <section aria-labelledby="aanpak-titel" className="bg-white">
+      <section aria-labelledby="aanpak-titel" className="bg-canvas">
         <Container>
           <div className="grid gap-14 border-b border-rose/12 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
             <div className="lg:col-span-5">
@@ -99,7 +99,7 @@ export default function OverOnsPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="keuzes-titel" className="border-t border-rose/10 bg-white">
+      <section aria-labelledby="keuzes-titel" className="border-t border-rose/10 bg-canvas">
         <Container>
           <div className="py-20 lg:py-28">
             <div className="reveal max-w-2xl">
@@ -118,7 +118,7 @@ export default function OverOnsPage() {
                 <li key={choice.title} className="reveal relative border-t border-rose/15 pt-9">
                   <span
                     aria-hidden="true"
-                    className="absolute -top-2 left-0 bg-white pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-rose tabular-nums"
+                    className="absolute -top-2 left-0 bg-canvas pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-rose tabular-nums"
                   >
                     {String(index + 1).padStart(2, '0')}
                   </span>
@@ -133,7 +133,7 @@ export default function OverOnsPage() {
         </Container>
       </section>
 
-      <PrinciplesSection index="03" surface="white" />
+      <PrinciplesSection index="03" surface="canvas" />
       <ExpectationsSection index="04" />
       <ContactCta index="05" uid="over-ons-cta" />
     </>

@@ -1,9 +1,10 @@
 import type { Metadata, Viewport } from 'next';
-import { DM_Mono, Manrope, Playfair_Display } from 'next/font/google';
+import { DM_Mono, Playfair_Display, Plus_Jakarta_Sans } from 'next/font/google';
 import './globals.css';
 import { site } from '@/content/site';
 import { SiteHeader } from '@/components/SiteHeader';
 import { SiteFooter } from '@/components/SiteFooter';
+import { MobileActionBar } from '@/components/MobileActionBar';
 import { JsonLd, organizationJsonLd, websiteJsonLd } from '@/lib/jsonld';
 import { OG_IMAGE } from '@/lib/metadata';
 
@@ -13,9 +14,15 @@ const playfair = Playfair_Display({
   display: 'swap',
 });
 
-const manrope = Manrope({
+/**
+ * Body/UI face. Plus Jakarta Sans over Inter deliberately: Inter is the
+ * default-looking grotesque of the moment, and next to a Playfair display
+ * face it reads as a system fallback rather than a choice. Jakarta's slightly
+ * humanist terminals sit better against Playfair's high contrast.
+ */
+const jakarta = Plus_Jakarta_Sans({
   subsets: ['latin'],
-  variable: '--font-manrope',
+  variable: '--font-jakarta',
   display: 'swap',
 });
 
@@ -83,12 +90,12 @@ export default function RootLayout({
   return (
     <html
       lang={site.lang}
-      className={`${playfair.variable} ${manrope.variable} ${dmMono.variable} h-full antialiased`}
+      className={`${playfair.variable} ${jakarta.variable} ${dmMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-white">
+      <body className="flex min-h-full flex-col bg-canvas">
         <a
           href="#hoofdinhoud"
-          className="sr-only font-mono text-xs tracking-[0.18em] uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-200 focus:inline-flex focus:min-h-11 focus:items-center focus:border focus:border-text-dark focus:bg-white focus:px-4 focus:text-text-dark"
+          className="sr-only font-mono text-xs tracking-[0.18em] uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-200 focus:inline-flex focus:min-h-11 focus:items-center focus:border focus:border-text-dark focus:bg-canvas focus:px-4 focus:text-text-dark"
         >
           Direct naar de inhoud
         </a>
@@ -97,6 +104,15 @@ export default function RootLayout({
           {children}
         </main>
         <SiteFooter />
+        {/* Clearance so the fixed action bar never covers the end of the
+            footer on small screens. Matches the bar's min-h-14 plus the iOS
+            safe-area inset. */}
+        <div
+          aria-hidden="true"
+          className="sm:hidden"
+          style={{ height: 'calc(3.5rem + env(safe-area-inset-bottom))' }}
+        />
+        <MobileActionBar />
         <JsonLd data={organizationJsonLd()} id="ld-organisatie" />
         <JsonLd data={websiteJsonLd()} id="ld-website" />
       </body>

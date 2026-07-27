@@ -10,7 +10,7 @@ import { PrinciplesSection } from '@/components/sections/PrinciplesSection';
 import { ProcessSection } from '@/components/sections/ProcessSection';
 import { ExpectationsSection } from '@/components/sections/ExpectationsSection';
 import { FaqTeaser } from '@/components/sections/FaqTeaser';
-import { ContactCta } from '@/components/sections/ContactCta';
+import { HomeContact } from '@/components/sections/HomeContact';
 
 const title = `${site.name} — ${site.tagline}`;
 
@@ -29,11 +29,11 @@ export default function HomePage() {
       <IntroTeaser />
       <ServicesSection />
       <PullQuote />
-      <PrinciplesSection index="03" surface="white" />
-      <ProcessSection index="04" surface="white" withLink />
+      <PrinciplesSection index="03" surface="canvas" />
+      <ProcessSection index="04" surface="canvas" withLink />
       <ExpectationsSection index="05" />
       <FaqTeaser index="06" />
-      <ContactCta index="07" uid="home-cta" />
+      <HomeContact index="07" />
     </>
   );
 }

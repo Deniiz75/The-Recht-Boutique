@@ -7,7 +7,7 @@
    ─────────────────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Palette. The page is white-dominant; cream is for the narrower warm
+  /* Palette. The page is canvas-dominant; cream is for the narrower warm
      surfaces (sticky header, cards, the value band), never a full-bleed
      content section.
 
@@ -15,18 +15,24 @@
 
      1. Eyebrows are 11px (--text-eyebrow), so they need 4.5:1. rose on cream
         is only 3.56:1 — an eyebrow on a cream surface is always rose-dark
-        (4.89:1 on cream, 7.72:1 on white). On white, plain rose passes at
-        5.62:1.
+        (4.89:1 on cream, 7.47:1 on canvas). On canvas, plain rose passes at
+        5.44:1.
      2. Body copy on cream is text-dark (9.04:1), never text-medium: that pair
         measures 4.54:1, which clears AA by 0.04 and is too tight to ship.
-        text-medium is for body copy on white (7.16:1).
-     3. rose-light (4.34:1 on white) and text-light (3.71:1 on white) are
+        text-medium is for body copy on canvas (6.93:1).
+     3. rose-light (4.20:1 on canvas) and text-light (3.59:1 on canvas) are
         decorative, large-display or placeholder only — never body or small
         text.
 
      Buttons are rose with a white label: white on rose is 5.62:1, and the
      rose fill clears 3:1 for its own boundary on both white and cream.
      Hover deepens to rose-dark. */
+  /* The page sits on a warm off-white rather than hard white — it takes the
+     glare off long passages of body copy and lets the pure-white surfaces
+     (the seal, button labels) actually read as white. Every ratio below was
+     re-measured against canvas, not #ffffff; the largest drop is 0.46 and
+     nothing crosses a threshold. */
+  --color-canvas: #fdfbf7;
   --color-white: #ffffff;
   --color-cream: #e3caab;
   --color-cream-dark: #d4bb9c;
@@ -65,7 +71,7 @@
 
 @theme inline {
   --font-display: var(--font-playfair), "Iowan Old Style", Georgia, serif;
-  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-sans: var(--font-jakarta), ui-sans-serif, system-ui, sans-serif;
   --font-mono: var(--font-dm-mono), ui-monospace, "SFMono-Regular", monospace;
 }
 
@@ -75,13 +81,19 @@
 }
 
 @layer base {
+  :root {
+    /* Required for `block-size: auto` to be an animatable target in
+       .disclosure::details-content. Ignored by engines that lack it. */
+    interpolate-size: allow-keywords;
+  }
+
   html {
     -webkit-text-size-adjust: 100%;
     scroll-behavior: smooth;
   }
 
   body {
-    background-color: var(--color-white);
+    background-color: var(--color-canvas);
     color: var(--color-text-dark);
     font-family: var(--font-sans);
     font-size: 1rem;
@@ -249,14 +261,14 @@
     color: var(--color-white);
   }
 
-  .btn-onink {
+  .btn-ondark {
     background-color: var(--color-white);
     color: var(--color-text-dark);
     border: 1px solid var(--color-white);
     box-shadow: 6px 6px 0 0 color-mix(in oklab, #000000 22%, transparent);
   }
 
-  .btn-onink:hover {
+  .btn-ondark:hover {
     background-color: var(--color-cream);
     border-color: var(--color-cream);
     transform: translate(2px, 2px);
@@ -397,7 +409,50 @@
   }
 
   .disclosure[open] .disclosure-sign {
-    transform: rotate(90deg);
+    transform: rotate(180deg);
+  }
+
+  /* Smooth open/close for the native <details>.
+
+     `::details-content` + `interpolate-size: allow-keywords` is the only way
+     to animate to an intrinsic height without JavaScript measuring the panel.
+     Where it is unsupported the disclosure simply snaps open, which is the
+     pre-existing behaviour — the content is never hidden or unreachable, so
+     this degrades to exactly what shipped before.
+
+     `content-visibility` must transition with `allow-discrete`, otherwise the
+     panel is display-locked for the whole duration and the height animation
+     is invisible. */
+  .disclosure::details-content {
+    block-size: 0;
+    overflow: hidden;
+    opacity: 0;
+    transition:
+      block-size 0.4s var(--ease-editorial),
+      opacity 0.3s var(--ease-editorial),
+      content-visibility 0.4s var(--ease-editorial) allow-discrete;
+  }
+
+  .disclosure[open]::details-content {
+    block-size: auto;
+    opacity: 1;
+  }
+
+  /* ── Card micro-interactions ─────────────────────────────────────────────
+     A card lifts by 2px and its top rule deepens to the accent. Kept to a
+     hairline of movement: on an editorial layout built from rules, anything
+     larger reads as the grid breaking rather than the card responding. */
+  .card-lift {
+    transition:
+      transform 0.35s var(--ease-editorial),
+      border-color 0.35s var(--ease-editorial);
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .card-lift:hover,
+    .card-lift:focus-within {
+      transform: translateY(-2px);
+    }
   }
 }
 

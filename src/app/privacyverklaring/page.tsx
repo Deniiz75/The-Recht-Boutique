@@ -43,7 +43,7 @@ export default function PrivacyPage() {
         </p>
       </PageHeader>
 
-      <section aria-label="Privacyverklaring" className="bg-white">
+      <section aria-label="Privacyverklaring" className="bg-canvas">
         <Container width="narrow">
           <article className="prose-legal py-16 lg:py-24">
             <h2 id="verwerkingsverantwoordelijke" className="!mt-0">

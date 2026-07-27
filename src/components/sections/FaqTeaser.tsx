@@ -9,7 +9,7 @@ const TEASER_COUNT = 3;
 
 export function FaqTeaser({ index }: { index?: string }) {
   return (
-    <section aria-labelledby="faq-titel" className="border-t border-rose/10 bg-white">
+    <section aria-labelledby="faq-titel" className="border-t border-rose/10 bg-canvas">
       <Container>
         <div className="grid gap-12 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
           <div className="lg:col-span-4">

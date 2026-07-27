@@ -7,7 +7,7 @@ import { ServiceCard } from '@/components/ui/ServiceCard';
 
 export function ServicesSection() {
   return (
-    <section aria-labelledby="diensten-titel" className="bg-white">
+    <section aria-labelledby="diensten-titel" className="bg-canvas">
       <Container>
         <div className="py-20 lg:py-28">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -38,7 +38,7 @@ export function ServicesSection() {
                 <ServiceCard
                   service={service}
                   index={String(index + 1).padStart(2, '0')}
-                  surface="white"
+                  surface="canvas"
                 />
               </li>
             ))}

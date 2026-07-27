@@ -8,20 +8,20 @@ type ProcessSectionProps = {
   index?: string;
   /** The summary variant links through to the full werkwijze page. */
   withLink?: boolean;
-  surface?: 'white' | 'cream';
+  surface?: 'canvas' | 'cream';
 };
 
 /* Body copy switches to text-dark on cream: text-medium measures 4.54:1 there
    and only 0.04 above AA, where on white it is a comfortable 7.16:1. */
 const surfaces = {
-  white: { section: 'bg-white', chip: 'bg-white', body: 'text-text-medium' },
+  canvas: { section: 'bg-canvas', chip: 'bg-canvas', body: 'text-text-medium' },
   cream: { section: 'bg-cream', chip: 'bg-cream', body: 'text-text-dark' },
 } as const;
 
 export function ProcessSection({
   index,
   withLink = false,
-  surface = 'white',
+  surface = 'canvas',
 }: ProcessSectionProps) {
   const tone = surfaces[surface];
 
@@ -58,7 +58,10 @@ export function ProcessSection({
 
           <ol className="mt-16 grid gap-x-10 gap-y-12 sm:grid-cols-2 lg:grid-cols-4">
             {processSteps.map((step) => (
-              <li key={step.step} className="reveal relative border-t border-rose/15 pt-9">
+              <li
+                key={step.step}
+                className="card-lift reveal group relative border-t border-rose/15 pt-9 hover:border-rose-dark"
+              >
                 <span
                   aria-hidden="true"
                   className={`absolute -top-2.5 left-0 pr-3 font-display text-lg leading-none text-rose-dark tabular-nums ${tone.chip}`}

@@ -7,7 +7,7 @@ import { ArchFrame } from '@/components/ui/ArchFrame';
 
 export default function NotFound() {
   return (
-    <section className="bg-white">
+    <section className="bg-canvas">
       <Container>
         <div className="grid items-center gap-14 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
           <div className="lg:col-span-7">

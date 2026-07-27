@@ -1,12 +1,12 @@
 import Link from 'next/link';
 import type { ComponentProps, ReactNode } from 'react';
 
-type Variant = 'primary' | 'outline' | 'onink';
+type Variant = 'primary' | 'outline' | 'ondark';
 
 const variants: Record<Variant, string> = {
   primary: 'btn btn-primary',
   outline: 'btn btn-outline',
-  onink: 'btn btn-onink',
+  ondark: 'btn btn-ondark',
 };
 
 type ButtonLinkProps = {

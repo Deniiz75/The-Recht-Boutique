@@ -12,7 +12,7 @@ type ExpectationsSectionProps = {
  */
 export function ExpectationsSection({ index }: ExpectationsSectionProps) {
   return (
-    <section aria-labelledby="verwachten-titel" className="border-t border-rose/12 bg-white">
+    <section aria-labelledby="verwachten-titel" className="border-t border-rose/12 bg-canvas">
       <Container>
         <div className="py-20 lg:py-28">
           <SectionHeading
