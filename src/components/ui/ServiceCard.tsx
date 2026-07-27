@@ -7,41 +7,45 @@ type ServiceCardProps = {
   /** Two-digit index rendered on the hairline. */
   index: string;
   /** The section background, so the number can straddle the rule cleanly. */
-  surface?: 'paper' | 'cream';
+  surface?: 'white' | 'cream';
 };
 
+/* Body copy switches to text-dark on cream: text-medium measures 4.54:1 there
+   and only 0.04 above AA, where on white it is a comfortable 7.16:1. */
 const surfaces = {
-  paper: 'bg-paper',
-  cream: 'bg-cream',
+  white: { chip: 'bg-white', body: 'text-text-medium' },
+  cream: { chip: 'bg-cream', body: 'text-text-dark' },
 } as const;
 
 /** A practice area, opened by a mono numeral sitting on the top hairline. */
-export function ServiceCard({ service, index, surface = 'paper' }: ServiceCardProps) {
+export function ServiceCard({ service, index, surface = 'white' }: ServiceCardProps) {
+  const tone = surfaces[surface];
+
   return (
     <Link
       href={`/diensten/${service.slug}`}
-      className="group relative flex h-full flex-col border-t border-ink/25 pt-9 pb-2 transition-colors hover:border-rust-deep"
+      className="group relative flex h-full flex-col border-t border-rose/15 pt-9 pb-2 transition-colors hover:border-rose-dark"
     >
       <span
         aria-hidden="true"
-        className={`absolute -top-2 left-0 pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-rust-deep tabular-nums ${surfaces[surface]}`}
+        className={`absolute -top-2 left-0 pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-rose-dark tabular-nums ${tone.chip}`}
       >
         {index}
       </span>
 
-      <p className="font-mono text-[0.625rem] tracking-[0.22em] text-muted uppercase">
+      <p className={`font-mono text-[0.625rem] tracking-[0.22em] uppercase ${tone.body}`}>
         {service.audience}
       </p>
 
-      <h3 className="mt-4 font-display text-heading text-ink-deep transition-colors group-hover:text-rust-deep">
+      <h3 className="mt-4 font-display text-heading text-text-dark transition-colors group-hover:text-rose-dark">
         {service.title}
       </h3>
 
-      <p className="mt-4 flex-1 text-[0.9375rem] leading-relaxed text-muted">
+      <p className={`mt-4 flex-1 text-[0.9375rem] leading-relaxed ${tone.body}`}>
         {service.summary}
       </p>
 
-      <span className="mt-7 inline-flex min-h-11 items-center gap-2 font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase">
+      <span className="mt-7 inline-flex min-h-11 items-center gap-2 font-mono text-[0.625rem] tracking-[0.2em] text-text-dark uppercase">
         <span className="link-rule-in">Meer over {service.title.toLowerCase()}</span>
         <ArrowUpRight
           aria-hidden="true"

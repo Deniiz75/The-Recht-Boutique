@@ -38,7 +38,7 @@ export default function ContactPage() {
         lead="Vertel kort wat er speelt. U hoort binnen één werkdag van ons wat wij voor u kunnen betekenen — en of een gesprek zinvol is."
       />
 
-      <section aria-label="Contactgegevens en formulier" className="bg-paper">
+      <section aria-label="Contactgegevens en formulier" className="bg-white">
         <Container>
           <div className="grid gap-14 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
             <div className="lg:col-span-7">
@@ -53,16 +53,16 @@ export default function ContactPage() {
                 Rechtstreeks
               </Eyebrow>
 
-              <dl className="border-t border-ink/25">
-                <div className="flex gap-4 border-b border-line py-6">
-                  <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rust-deep" />
+              <dl className="border-t border-rose/15">
+                <div className="flex gap-4 border-b border-rose/12 py-6">
+                  <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
                   <div>
-                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-muted uppercase">
+                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
                       Telefoon
                     </dt>
                     <dd className="mt-2 text-[1.0625rem]">
                       {phone ? (
-                        <a href={phone.href} className="link-rule-in text-ink">
+                        <a href={phone.href} className="link-rule-in text-text-dark">
                           {phone.display}
                         </a>
                       ) : (
@@ -72,15 +72,15 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex gap-4 border-b border-line py-6">
-                  <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rust-deep" />
+                <div className="flex gap-4 border-b border-rose/12 py-6">
+                  <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
                   <div className="min-w-0">
-                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-muted uppercase">
+                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
                       E-mail
                     </dt>
                     <dd className="mt-2 text-[1.0625rem] break-words">
                       {email ? (
-                        <a href={`mailto:${email}`} className="link-rule-in text-ink">
+                        <a href={`mailto:${email}`} className="link-rule-in text-text-dark">
                           {email}
                         </a>
                       ) : (
@@ -90,13 +90,13 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex gap-4 border-b border-line py-6">
-                  <MapPin aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rust-deep" />
+                <div className="flex gap-4 border-b border-rose/12 py-6">
+                  <MapPin aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
                   <div>
-                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-muted uppercase">
+                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
                       Bezoekadres
                     </dt>
-                    <dd className="mt-2 space-y-1 text-[1.0625rem] text-ink">
+                    <dd className="mt-2 space-y-1 text-[1.0625rem] text-text-dark">
                       {address ? (
                         <>
                           <p>{address.street}</p>
@@ -121,26 +121,26 @@ export default function ContactPage() {
                   </div>
                 </div>
 
-                <div className="flex gap-4 border-b border-line py-6">
-                  <Clock aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rust-deep" />
+                <div className="flex gap-4 border-b border-rose/12 py-6">
+                  <Clock aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
                   <div>
-                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-muted uppercase">
+                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
                       Bereikbaarheid
                     </dt>
-                    <dd className="mt-2 text-[1.0625rem] text-ink">{contact.hours}</dd>
+                    <dd className="mt-2 text-[1.0625rem] text-text-dark">{contact.hours}</dd>
                   </div>
                 </div>
               </dl>
 
               <div
-                className="mt-12 border border-line bg-cream px-6 pt-10 pb-8 text-center"
+                className="mt-12 border border-rose/25 bg-cream px-6 pt-10 pb-8 text-center"
                 style={{ borderRadius: '110px 110px 0 0' }}
               >
-                <Seal size={68} tone="gold" uid="contact" className="mx-auto" />
-                <p className="mt-6 font-display text-[1.1875rem] leading-snug text-ink-deep">
+                <Seal size={68} tone="cream" uid="contact" className="mx-auto" />
+                <p className="mt-6 font-display text-[1.1875rem] leading-snug text-text-dark">
                   Spoed? Zet het in uw bericht.
                 </p>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-muted">
+                <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-dark">
                   Dreigt er een termijn te verlopen of heeft u een dagvaarding ontvangen,
                   vermeld dat dan meteen — dan pakken wij het met voorrang op.
                 </p>

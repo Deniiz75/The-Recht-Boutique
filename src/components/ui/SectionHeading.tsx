@@ -6,7 +6,7 @@ type SectionHeadingProps = {
   index?: string;
   title: ReactNode;
   intro?: ReactNode;
-  tone?: 'ink' | 'paper';
+  tone?: 'onLight' | 'onDark';
   align?: 'start' | 'center';
   className?: string;
 };
@@ -17,7 +17,7 @@ export function SectionHeading({
   index,
   title,
   intro,
-  tone = 'ink',
+  tone = 'onLight',
   align = 'start',
   className,
 }: SectionHeadingProps) {
@@ -33,13 +33,13 @@ export function SectionHeading({
         {eyebrow}
       </Eyebrow>
       <h2
-        className={`mt-6 font-display text-title ${tone === 'paper' ? 'text-paper' : 'text-ink-deep'}`}
+        className={`mt-6 font-display text-title ${tone === 'onDark' ? 'text-white' : 'text-text-dark'}`}
       >
         {title}
       </h2>
       {intro ? (
         <div
-          className={`mt-5 text-lead ${tone === 'paper' ? 'text-paper/75' : 'text-muted'}`}
+          className={`mt-5 text-lead ${tone === 'onDark' ? 'text-white/75' : 'text-text-medium'}`}
         >
           {intro}
         </div>

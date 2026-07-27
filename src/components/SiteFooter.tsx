@@ -12,11 +12,11 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-dark relative mt-auto overflow-hidden bg-ink-deep text-paper/85">
+    <footer className="on-dark relative mt-auto overflow-hidden bg-text-dark text-white/85">
       {/* Arch silhouette rising out of the footer's top edge. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-gold/15 md:block"
+        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-cream/15 md:block"
         style={{ borderRadius: '260px 260px 0 0' }}
       />
 
@@ -24,19 +24,19 @@ export function SiteFooter() {
         <div className="relative grid gap-12 py-16 md:grid-cols-12 md:gap-8 lg:py-20">
           <div className="md:col-span-5">
             <div className="flex items-center gap-4">
-              <Seal size={64} tone="ink" uid="footer" />
-              <p className="font-display text-2xl leading-none text-paper">
+              <Seal size={64} tone="dark" uid="footer" />
+              <p className="font-display text-2xl leading-none text-white">
                 The Recht <span className="italic">Boutique</span>
               </p>
             </div>
-            <p className="mt-6 max-w-sm text-[0.9375rem] leading-relaxed text-paper/70">
+            <p className="mt-6 max-w-sm text-[0.9375rem] leading-relaxed text-white/70">
               Een juridisch adviesbureau voor ondernemers en particulieren. Persoonlijk
               advies, heldere taal en één vast aanspreekpunt.
             </p>
           </div>
 
           <nav aria-label="Footernavigatie" className="md:col-span-3">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-gold uppercase">
+            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
               Navigatie
             </h2>
             <ul className="mt-5 space-y-1">
@@ -44,7 +44,7 @@ export function SiteFooter() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-paper/80 hover:text-paper"
+                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-white/80 hover:text-white"
                   >
                     {item.label}
                   </Link>
@@ -54,7 +54,7 @@ export function SiteFooter() {
           </nav>
 
           <div className="md:col-span-2">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-gold uppercase">
+            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
               Praktijk
             </h2>
             <ul className="mt-5 space-y-1">
@@ -62,7 +62,7 @@ export function SiteFooter() {
                 <li key={service.slug}>
                   <Link
                     href={`/diensten/${service.slug}`}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-paper/80 hover:text-paper"
+                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-white/80 hover:text-white"
                   >
                     {service.title}
                   </Link>
@@ -72,13 +72,13 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-2">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-gold uppercase">
+            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
               Contact
             </h2>
             <address className="mt-5 space-y-3 text-[0.9375rem] not-italic">
               <div>
                 {phone ? (
-                  <a href={phone.href} className="link-rule-in inline-flex min-h-11 items-center py-1 text-paper/80 hover:text-paper">
+                  <a href={phone.href} className="link-rule-in inline-flex min-h-11 items-center py-1 text-white/80 hover:text-white">
                     {phone.display}
                   </a>
                 ) : (
@@ -89,7 +89,7 @@ export function SiteFooter() {
                 {email ? (
                   <a
                     href={`mailto:${email}`}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 break-all text-paper/80 hover:text-paper"
+                    className="link-rule-in inline-flex min-h-11 items-center py-1 break-all text-white/80 hover:text-white"
                   >
                     {email}
                   </a>
@@ -97,7 +97,7 @@ export function SiteFooter() {
                   <DataValueOnInk value={contact.email} />
                 )}
               </div>
-              <div className="space-y-1 text-paper/70">
+              <div className="space-y-1 text-white/70">
                 {address ? (
                   <>
                     <p>{address.street}</p>
@@ -117,12 +117,12 @@ export function SiteFooter() {
                   </>
                 )}
               </div>
-              <p className="text-paper/60">{contact.hours}</p>
+              <p className="text-white/60">{contact.hours}</p>
             </address>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-paper/15 py-8 font-mono text-[0.6875rem] tracking-[0.12em] text-paper/60 uppercase md:flex-row md:items-center md:justify-between">
+        <div className="flex flex-col gap-4 border-t border-white/15 py-8 font-mono text-[0.6875rem] tracking-[0.12em] text-white/60 uppercase md:flex-row md:items-center md:justify-between">
           <p>
             © {year} {site.name}
           </p>
@@ -136,7 +136,7 @@ export function SiteFooter() {
           </p>
           <Link
             href="/privacyverklaring"
-            className="link-rule-in inline-flex min-h-11 items-center py-1 tracking-[0.12em] text-paper/70 hover:text-paper"
+            className="link-rule-in inline-flex min-h-11 items-center py-1 tracking-[0.12em] text-white/70 hover:text-white"
           >
             Privacyverklaring
           </Link>

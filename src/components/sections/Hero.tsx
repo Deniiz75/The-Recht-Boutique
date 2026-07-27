@@ -7,7 +7,7 @@ import { ButtonLink } from '@/components/ui/ButtonLink';
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden border-b border-line">
+    <section className="relative overflow-hidden border-b border-rose/12">
       {/* Asymmetric cream field behind the arch. */}
       <span
         aria-hidden="true"
@@ -15,7 +15,7 @@ export function Hero() {
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute top-0 right-[38%] hidden h-full w-px bg-line lg:block"
+        className="pointer-events-none absolute top-0 right-[38%] hidden h-full w-px bg-rose/25 lg:block"
       />
 
       <Container>
@@ -34,7 +34,7 @@ export function Hero() {
             </h1>
 
             <p
-              className="rise mt-8 max-w-xl text-lead text-muted"
+              className="rise mt-8 max-w-xl text-lead text-text-medium"
               style={{ animationDelay: '180ms' }}
             >
               {site.description}
@@ -51,15 +51,15 @@ export function Hero() {
             </div>
 
             <ul
-              className="rise mt-14 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-line pt-6 sm:grid-cols-4"
+              className="rise mt-14 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-rose/12 pt-6 sm:grid-cols-4"
               style={{ animationDelay: '340ms' }}
             >
               {services.map((service, index) => (
                 <li
                   key={service.slug}
-                  className="font-mono text-[0.625rem] tracking-[0.16em] text-muted uppercase"
+                  className="font-mono text-[0.625rem] tracking-[0.16em] text-text-medium uppercase"
                 >
-                  <span aria-hidden="true" className="mr-2 text-rust-deep tabular-nums">
+                  <span aria-hidden="true" className="mr-2 text-rose tabular-nums">
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   {service.title}
@@ -76,9 +76,9 @@ export function Hero() {
               <ArchFrame caption="Ondernemers &amp; particulieren" ratio="4 / 5" />
               <Seal
                 size={112}
-                tone="paper"
+                tone="white"
                 uid="hero"
-                className="absolute -bottom-8 -left-6 shadow-[0_10px_40px_-18px_rgba(11,45,39,0.55)] sm:-bottom-10 sm:-left-10"
+                className="absolute -bottom-8 -left-6 shadow-[0_10px_40px_-18px_rgba(45,42,38,0.45)] sm:-bottom-10 sm:-left-10"
               />
             </div>
           </div>

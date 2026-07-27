@@ -38,12 +38,12 @@ export default function PrivacyPage() {
         }
         lead="Deze verklaring beschrijft welke persoonsgegevens The Recht Boutique verwerkt, waarom wij dat doen en welke rechten u daarbij heeft."
       >
-        <p className="font-mono text-[0.625rem] tracking-[0.2em] text-muted uppercase">
+        <p className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
           Laatst bijgewerkt: {updated}
         </p>
       </PageHeader>
 
-      <section aria-label="Privacyverklaring" className="bg-paper">
+      <section aria-label="Privacyverklaring" className="bg-white">
         <Container width="narrow">
           <article className="prose-legal py-16 lg:py-24">
             <h2 id="verwerkingsverantwoordelijke" className="!mt-0">

@@ -29,24 +29,24 @@ export function ArchFrame({
       {/* Receding arcade — the arch motif repeated inward. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-[7%] border border-gold/35"
+        className="pointer-events-none absolute inset-[7%] border border-cream/35"
         style={{ borderRadius: '220px 220px 0 0' }}
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-[15%] border border-paper/15"
+        className="pointer-events-none absolute inset-[15%] border border-white/15"
         style={{ borderRadius: '180px 180px 0 0' }}
       />
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute inset-[24%] border border-paper/10"
+        className="pointer-events-none absolute inset-[24%] border border-white/10"
         style={{ borderRadius: '140px 140px 0 0' }}
       />
 
       {/* Keystone hairline dropping from the crown. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute top-[7%] left-1/2 h-[46%] w-px -translate-x-1/2 bg-linear-to-b from-gold/50 to-transparent"
+        className="pointer-events-none absolute top-[7%] left-1/2 h-[46%] w-px -translate-x-1/2 bg-linear-to-b from-cream/50 to-transparent"
       />
 
       {children ? (
@@ -56,7 +56,7 @@ export function ArchFrame({
       ) : null}
 
       {caption ? (
-        <p className="absolute inset-x-0 bottom-6 z-10 px-6 text-center font-mono text-[0.625rem] tracking-[0.28em] text-gold uppercase">
+        <p className="absolute inset-x-0 bottom-6 z-10 px-6 text-center font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
           {caption}
         </p>
       ) : null}

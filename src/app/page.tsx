@@ -29,8 +29,8 @@ export default function HomePage() {
       <IntroTeaser />
       <ServicesSection />
       <PullQuote />
-      <PrinciplesSection index="03" surface="paper" />
-      <ProcessSection index="04" surface="cream" withLink />
+      <PrinciplesSection index="03" surface="white" />
+      <ProcessSection index="04" surface="white" withLink />
       <ExpectationsSection index="05" />
       <FaqTeaser index="06" />
       <ContactCta index="07" uid="home-cta" />

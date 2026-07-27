@@ -71,7 +71,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: '#123d36',
+  themeColor: '#e3caab',
   colorScheme: 'light',
 };
 
@@ -85,10 +85,10 @@ export default function RootLayout({
       lang={site.lang}
       className={`${playfair.variable} ${manrope.variable} ${dmMono.variable} h-full antialiased`}
     >
-      <body className="flex min-h-full flex-col bg-paper">
+      <body className="flex min-h-full flex-col bg-white">
         <a
           href="#hoofdinhoud"
-          className="sr-only font-mono text-xs tracking-[0.18em] uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-200 focus:inline-flex focus:min-h-11 focus:items-center focus:border focus:border-ink focus:bg-paper focus:px-4 focus:text-ink"
+          className="sr-only font-mono text-xs tracking-[0.18em] uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-200 focus:inline-flex focus:min-h-11 focus:items-center focus:border focus:border-text-dark focus:bg-white focus:px-4 focus:text-text-dark"
         >
           Direct naar de inhoud
         </a>

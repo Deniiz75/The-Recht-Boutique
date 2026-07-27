@@ -3,7 +3,7 @@ import { Scale } from 'lucide-react';
 type SealProps = {
   /** Rendered diameter in CSS pixels. */
   size?: number;
-  tone?: 'ink' | 'paper' | 'gold';
+  tone?: 'dark' | 'white' | 'cream';
   /** Unique suffix for the internal SVG path id — required when more than one
    *  seal appears on the same page. */
   uid?: string;
@@ -13,26 +13,26 @@ type SealProps = {
 const LEGEND = 'THE RECHT BOUTIQUE · JURIDISCH ADVIES · ';
 
 const tones = {
-  ink: {
-    surface: 'var(--color-ink-deep)',
-    ring: 'color-mix(in oklab, var(--color-gold) 70%, transparent)',
-    hair: 'color-mix(in oklab, var(--color-gold) 40%, transparent)',
-    text: 'var(--color-gold)',
-    icon: 'text-gold',
+  dark: {
+    surface: 'var(--color-text-dark)',
+    ring: 'color-mix(in oklab, var(--color-cream) 70%, transparent)',
+    hair: 'color-mix(in oklab, var(--color-cream) 40%, transparent)',
+    text: 'var(--color-cream)',
+    icon: 'text-cream',
   },
-  paper: {
-    surface: 'var(--color-paper)',
-    ring: 'var(--color-ink)',
-    hair: 'color-mix(in oklab, var(--color-ink) 35%, transparent)',
-    text: 'var(--color-ink)',
-    icon: 'text-ink',
+  white: {
+    surface: 'var(--color-white)',
+    ring: 'var(--color-rose)',
+    hair: 'color-mix(in oklab, var(--color-rose) 35%, transparent)',
+    text: 'var(--color-text-dark)',
+    icon: 'text-rose',
   },
-  gold: {
-    surface: 'var(--color-sand)',
-    ring: 'var(--color-ink-deep)',
-    hair: 'color-mix(in oklab, var(--color-ink-deep) 35%, transparent)',
-    text: 'var(--color-ink-deep)',
-    icon: 'text-ink-deep',
+  cream: {
+    surface: 'var(--color-cream-dark)',
+    ring: 'var(--color-text-dark)',
+    hair: 'color-mix(in oklab, var(--color-text-dark) 35%, transparent)',
+    text: 'var(--color-text-dark)',
+    icon: 'text-text-dark',
   },
 } as const;
 
@@ -41,7 +41,7 @@ const tones = {
  * set on a circular baseline. Decorative — the firm name is already in the
  * page's text, so it is hidden from assistive technology.
  */
-export function Seal({ size = 116, tone = 'ink', uid = 'seal', className }: SealProps) {
+export function Seal({ size = 116, tone = 'dark', uid = 'seal', className }: SealProps) {
   const t = tones[tone];
   const pathId = `seal-path-${uid}`;
 

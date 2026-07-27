@@ -7,7 +7,7 @@ import { ServiceCard } from '@/components/ui/ServiceCard';
 
 export function ServicesSection() {
   return (
-    <section aria-labelledby="diensten-titel" className="bg-cream">
+    <section aria-labelledby="diensten-titel" className="bg-white">
       <Container>
         <div className="py-20 lg:py-28">
           <div className="flex flex-col gap-8 md:flex-row md:items-end md:justify-between">
@@ -22,12 +22,12 @@ export function ServicesSection() {
             />
             <Link
               href="/diensten"
-              className="group reveal inline-flex min-h-11 shrink-0 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.2em] text-ink uppercase"
+              className="group reveal inline-flex min-h-11 shrink-0 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.2em] text-text-dark uppercase"
             >
               <span className="link-rule-in">Alle diensten</span>
               <ArrowRight
                 aria-hidden="true"
-                className="h-4 w-4 text-rust-deep transition-transform duration-300 group-hover:translate-x-1"
+                className="h-4 w-4 text-rose transition-transform duration-300 group-hover:translate-x-1"
               />
             </Link>
           </div>
@@ -38,7 +38,7 @@ export function ServicesSection() {
                 <ServiceCard
                   service={service}
                   index={String(index + 1).padStart(2, '0')}
-                  surface="cream"
+                  surface="white"
                 />
               </li>
             ))}

@@ -15,11 +15,11 @@ type PageHeaderProps = {
 /** The opening masthead of every interior page. */
 export function PageHeader({ eyebrow, title, lead, above, children }: PageHeaderProps) {
   return (
-    <section className="relative overflow-hidden border-b border-line bg-paper">
+    <section className="relative overflow-hidden border-b border-rose/12 bg-white">
       {/* Faint arch outline anchoring the masthead. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 bottom-0 hidden h-[22rem] w-[19rem] border border-line lg:block"
+        className="pointer-events-none absolute -right-16 bottom-0 hidden h-[22rem] w-[19rem] border border-rose/12 lg:block"
         style={{ borderRadius: '260px 260px 0 0' }}
       />
       <Container>
@@ -34,7 +34,7 @@ export function PageHeader({ eyebrow, title, lead, above, children }: PageHeader
           </h1>
           {lead ? (
             <div
-              className="rise mt-6 max-w-2xl text-lead text-muted"
+              className="rise mt-6 max-w-2xl text-lead text-text-medium"
               style={{ animationDelay: '160ms' }}
             >
               {lead}

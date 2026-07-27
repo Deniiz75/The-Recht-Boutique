@@ -8,7 +8,10 @@ const values = ['Vertrouwelijk', 'Persoonlijk', 'Helder', 'Strategisch'] as cons
 
 export function TrustBar() {
   return (
-    <section aria-labelledby="waarden-titel" className="on-dark bg-ink text-paper">
+    <section
+      aria-labelledby="waarden-titel"
+      className="border-y border-rose/15 bg-cream-dark text-text-dark"
+    >
       <Container>
         <h2 id="waarden-titel" className="sr-only">
           Waar wij voor staan
@@ -19,10 +22,10 @@ export function TrustBar() {
               {index > 0 ? (
                 <span
                   aria-hidden="true"
-                  className="hidden h-1.5 w-1.5 rotate-45 bg-gold sm:block"
+                  className="hidden h-1.5 w-1.5 rotate-45 bg-rose-dark sm:block"
                 />
               ) : null}
-              <span className="font-display text-xl text-paper italic sm:text-2xl">
+              <span className="font-display text-xl text-text-dark italic sm:text-2xl">
                 {value}
               </span>
             </li>

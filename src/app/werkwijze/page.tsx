@@ -73,22 +73,22 @@ export default function WerkwijzePage() {
         <ButtonLink href="/contact">Plan een kennismaking</ButtonLink>
       </PageHeader>
 
-      <section aria-label="De vier stappen" className="bg-paper">
+      <section aria-label="De vier stappen" className="bg-white">
         <Container>
           <div className="py-16 lg:py-24">
-            <ol className="border-t border-ink/25">
+            <ol className="border-t border-rose/15">
               {processSteps.map((step) => {
                 const extra = details[step.step];
                 return (
                   <li
                     key={step.step}
-                    className="reveal grid gap-8 border-b border-line py-14 lg:grid-cols-12 lg:gap-12"
+                    className="reveal grid gap-8 border-b border-rose/12 py-14 lg:grid-cols-12 lg:gap-12"
                   >
                     <div className="lg:col-span-4">
                       <div className="flex items-baseline gap-5">
                         <span
                           aria-hidden="true"
-                          className="font-display text-[3.25rem] leading-none text-rust-deep tabular-nums"
+                          className="font-display text-[3.25rem] leading-none text-rose tabular-nums"
                         >
                           {step.step}
                         </span>
@@ -97,21 +97,21 @@ export default function WerkwijzePage() {
                     </div>
 
                     <div className="lg:col-span-7 lg:col-start-6">
-                      <p className="text-lead text-ink">{step.text}</p>
+                      <p className="text-lead text-text-dark">{step.text}</p>
                       {extra ? (
                         <>
-                          <p className="mt-5 text-[1.0625rem] leading-relaxed text-muted">
+                          <p className="mt-5 text-[1.0625rem] leading-relaxed text-text-medium">
                             {extra.detail}
                           </p>
-                          <ul className="mt-7 space-y-3 border-t border-line pt-6">
+                          <ul className="mt-7 space-y-3 border-t border-rose/12 pt-6">
                             {extra.points.map((point) => (
                               <li
                                 key={point}
-                                className="relative pl-6 text-[0.9375rem] leading-relaxed text-ink/85"
+                                className="relative pl-6 text-[0.9375rem] leading-relaxed text-text-dark/85"
                               >
                                 <span
                                   aria-hidden="true"
-                                  className="absolute top-[0.72em] left-0 h-px w-3 bg-rust"
+                                  className="absolute top-[0.72em] left-0 h-px w-3 bg-rose"
                                 />
                                 {point}
                               </li>

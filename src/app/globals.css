@@ -2,25 +2,40 @@
 
 /* ───────────────────────────────────────────────────────────────────────────
    The Recht Boutique — design tokens
-   Editorial / letterpress identity: forest ink on warm paper, arch motif,
-   hairline rules, mono numerals, square corners.
+   Editorial / letterpress identity: crimson accent on white, warm cream
+   surfaces, arch motif, hairline rules, mono numerals, square corners.
    ─────────────────────────────────────────────────────────────────────────── */
 
 @theme {
-  /* Palette */
-  --color-ink: #123d36;
-  --color-ink-deep: #0b2d27;
-  --color-paper: #fffcf6;
-  --color-cream: #f7f3ea;
-  --color-sand: #e9dfcb;
-  --color-rust: #bd5d3e;
-  /* rust #BD5D3E scores 4.27:1 on paper and 4.38:1 behind white text — below
-     the 4.5:1 AA threshold. rust-deep is the token for anything textual
-     (links, buttons with white labels); plain rust is decorative / large only. */
-  --color-rust-deep: #a2452a;
-  --color-gold: #d6ad59;
-  --color-muted: #62726a;
-  --color-line: #d7d1c3;
+  /* Palette. The page is white-dominant; cream is for the narrower warm
+     surfaces (sticky header, cards, the value band), never a full-bleed
+     content section.
+
+     Measured contrast, and the three rules that follow from it:
+
+     1. Eyebrows are 11px (--text-eyebrow), so they need 4.5:1. rose on cream
+        is only 3.56:1 — an eyebrow on a cream surface is always rose-dark
+        (4.89:1 on cream, 7.72:1 on white). On white, plain rose passes at
+        5.62:1.
+     2. Body copy on cream is text-dark (9.04:1), never text-medium: that pair
+        measures 4.54:1, which clears AA by 0.04 and is too tight to ship.
+        text-medium is for body copy on white (7.16:1).
+     3. rose-light (4.34:1 on white) and text-light (3.71:1 on white) are
+        decorative, large-display or placeholder only — never body or small
+        text.
+
+     Buttons are rose with a white label: white on rose is 5.62:1, and the
+     rose fill clears 3:1 for its own boundary on both white and cream.
+     Hover deepens to rose-dark. */
+  --color-white: #ffffff;
+  --color-cream: #e3caab;
+  --color-cream-dark: #d4bb9c;
+  --color-rose: #cf0044;
+  --color-rose-light: #e03366;
+  --color-rose-dark: #a80037;
+  --color-text-dark: #2d2a26;
+  --color-text-medium: #5c574f;
+  --color-text-light: #8a847a;
 
   /* Radii — deliberately square everywhere except the arch motif. */
   --radius-none: 0px;
@@ -66,8 +81,8 @@
   }
 
   body {
-    background-color: var(--color-paper);
-    color: var(--color-ink);
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
     font-family: var(--font-sans);
     font-size: 1rem;
     line-height: 1.65;
@@ -94,7 +109,7 @@
     font-family: var(--font-display);
     font-weight: 500;
     font-optical-sizing: auto;
-    color: var(--color-ink-deep);
+    color: var(--color-text-dark);
     text-wrap: balance;
   }
 
@@ -103,19 +118,19 @@
   }
 
   :focus-visible {
-    outline: 2px solid var(--color-rust-deep);
+    outline: 2px solid var(--color-rose-dark);
     outline-offset: 2px;
     border-radius: 0;
   }
 
   ::selection {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
   }
 
   /* Dark surfaces flip the focus ring so it stays visible. */
   .on-dark :focus-visible {
-    outline-color: var(--color-gold);
+    outline-color: var(--color-cream);
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -140,25 +155,27 @@
     border-radius: var(--radius-arch);
   }
 
-  /* Composed, photo-free arch fill: layered ink gradient + engraved lines. */
+  /* Composed, photo-free arch fill: layered dark gradient + engraved lines.
+     rose-light is used here deliberately — a large decorative wash, never
+     text. */
   .arch-fill {
-    background-color: var(--color-ink);
+    background-color: var(--color-text-dark);
     background-image:
       radial-gradient(
         120% 78% at 26% 8%,
-        color-mix(in oklab, var(--color-sand) 34%, transparent) 0%,
+        color-mix(in oklab, var(--color-cream) 34%, transparent) 0%,
         transparent 58%
       ),
       radial-gradient(
         90% 62% at 88% 96%,
-        color-mix(in oklab, var(--color-rust) 40%, transparent) 0%,
+        color-mix(in oklab, var(--color-rose-light) 42%, transparent) 0%,
         transparent 62%
       ),
       linear-gradient(
         168deg,
-        var(--color-ink) 0%,
-        var(--color-ink-deep) 62%,
-        #071f1b 100%
+        var(--color-text-dark) 0%,
+        var(--color-text-dark) 62%,
+        #000000 100%
       );
   }
 
@@ -171,8 +188,8 @@
     pointer-events: none;
     background-image: repeating-linear-gradient(
       -22deg,
-      color-mix(in oklab, var(--color-paper) 22%, transparent) 0px,
-      color-mix(in oklab, var(--color-paper) 22%, transparent) 0.5px,
+      color-mix(in oklab, var(--color-white) 22%, transparent) 0px,
+      color-mix(in oklab, var(--color-white) 22%, transparent) 0.5px,
       transparent 0.5px,
       transparent 7px
     );
@@ -204,44 +221,46 @@
       transform 0.35s var(--ease-editorial);
   }
 
+  /* Primary is the accent: white label on rose (5.62:1), deepening to
+     rose-dark on hover. */
   .btn-primary {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
-    border: 1px solid var(--color-ink);
-    box-shadow: 6px 6px 0 0 color-mix(in oklab, var(--color-ink) 14%, transparent);
+    background-color: var(--color-rose);
+    color: var(--color-white);
+    border: 1px solid var(--color-rose);
+    box-shadow: 6px 6px 0 0 color-mix(in oklab, var(--color-rose) 18%, transparent);
   }
 
   .btn-primary:hover {
-    background-color: var(--color-rust-deep);
-    border-color: var(--color-rust-deep);
+    background-color: var(--color-rose-dark);
+    border-color: var(--color-rose-dark);
     box-shadow: 3px 3px 0 0
-      color-mix(in oklab, var(--color-rust-deep) 22%, transparent);
+      color-mix(in oklab, var(--color-rose-dark) 26%, transparent);
     transform: translate(2px, 2px);
   }
 
   .btn-outline {
     background-color: transparent;
-    color: var(--color-ink);
-    border: 1px solid var(--color-ink);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-text-dark);
   }
 
   .btn-outline:hover {
-    background-color: var(--color-ink);
-    color: var(--color-paper);
+    background-color: var(--color-text-dark);
+    color: var(--color-white);
   }
 
   .btn-onink {
-    background-color: var(--color-paper);
-    color: var(--color-ink-deep);
-    border: 1px solid var(--color-paper);
-    box-shadow: 6px 6px 0 0 color-mix(in oklab, #000 22%, transparent);
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
+    border: 1px solid var(--color-white);
+    box-shadow: 6px 6px 0 0 color-mix(in oklab, #000000 22%, transparent);
   }
 
   .btn-onink:hover {
-    background-color: var(--color-gold);
-    border-color: var(--color-gold);
+    background-color: var(--color-cream);
+    border-color: var(--color-cream);
     transform: translate(2px, 2px);
-    box-shadow: 3px 3px 0 0 color-mix(in oklab, #000 26%, transparent);
+    box-shadow: 3px 3px 0 0 color-mix(in oklab, #000000 26%, transparent);
   }
 
   /* ── Editorial link: rule grows from the baseline ─────────────────────── */
@@ -271,13 +290,16 @@
     background-size: 100% 1px;
   }
 
-  /* ── Form fields: square, hairline is 3:1 against paper ───────────────── */
+  /* ── Form fields ──────────────────────────────────────────────────────────
+     The border stays text-medium (7.16:1 on white): a field boundary is a
+     UI component boundary and owes 3:1 under 1.4.11, so it is deliberately
+     not one of the translucent rose hairlines. */
   .field {
     width: 100%;
     border-radius: 0;
-    border: 1px solid var(--color-muted);
-    background-color: color-mix(in oklab, var(--color-paper) 70%, #fff);
-    color: var(--color-ink-deep);
+    border: 1px solid var(--color-text-medium);
+    background-color: var(--color-white);
+    color: var(--color-text-dark);
     padding: 0.875rem 1rem;
     min-height: 3rem;
     font-family: var(--font-sans);
@@ -289,21 +311,21 @@
   }
 
   .field::placeholder {
-    color: color-mix(in oklab, var(--color-muted) 78%, transparent);
+    color: var(--color-text-light);
   }
 
   .field:hover {
-    border-color: var(--color-ink);
+    border-color: var(--color-text-dark);
   }
 
   .field:focus {
-    border-color: var(--color-ink);
-    box-shadow: inset 0 -2px 0 0 var(--color-rust-deep);
+    border-color: var(--color-text-dark);
+    box-shadow: inset 0 -2px 0 0 var(--color-rose-dark);
   }
 
   .field[aria-invalid="true"] {
-    border-color: var(--color-rust-deep);
-    box-shadow: inset 0 -2px 0 0 var(--color-rust-deep);
+    border-color: var(--color-rose-dark);
+    box-shadow: inset 0 -2px 0 0 var(--color-rose-dark);
   }
 
   /* ── Long-form legal copy (privacyverklaring) ─────────────────────────── */
@@ -320,14 +342,14 @@
     font-weight: 700;
     font-size: 1.0625rem;
     letter-spacing: 0.01em;
-    color: var(--color-ink-deep);
+    color: var(--color-text-dark);
     margin-top: 2rem;
     margin-bottom: 0.5rem;
   }
 
   .prose-legal p,
   .prose-legal li {
-    color: var(--color-muted);
+    color: var(--color-text-medium);
     line-height: 1.75;
   }
 
@@ -355,11 +377,11 @@
     top: 0.75em;
     width: 0.625rem;
     height: 1px;
-    background-color: var(--color-rust);
+    background-color: var(--color-rose);
   }
 
   .prose-legal a {
-    color: var(--color-rust-deep);
+    color: var(--color-rose-dark);
     text-decoration: underline;
     text-underline-offset: 3px;
   }

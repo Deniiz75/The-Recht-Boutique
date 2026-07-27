@@ -9,7 +9,7 @@ export function SiteHeader() {
     /* Solid background on purpose: a backdrop-filter here would become the
        containing block for the mobile menu's `position: fixed` panel and clip
        it to the header's height. */
-    <header className="sticky top-0 z-50 border-b border-line bg-paper">
+    <header className="sticky top-0 z-50 border-b border-rose/15 bg-cream">
       <Container>
         <div className="flex h-[4.5rem] items-center justify-between gap-4 lg:h-24">
           <Logo uid="header" />
@@ -20,7 +20,7 @@ export function SiteHeader() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="link-rule-in flex h-11 items-center px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-ink uppercase"
+                    className="link-rule-in flex h-11 items-center px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-text-dark uppercase"
                   >
                     {item.label}
                   </Link>

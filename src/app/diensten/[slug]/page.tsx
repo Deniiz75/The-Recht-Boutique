@@ -66,22 +66,22 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         lead={service.intro}
         above={
           <nav aria-label="Kruimelpad" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.625rem] tracking-[0.18em] text-muted uppercase">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.625rem] tracking-[0.18em] text-text-medium uppercase">
               {trail.map((crumb, index) => {
                 const isLast = index === trail.length - 1;
                 return (
                   <li key={crumb.path} className="flex items-center gap-2">
                     {index > 0 ? (
-                      <ChevronRight aria-hidden="true" className="h-3 w-3 text-line" />
+                      <ChevronRight aria-hidden="true" className="h-3 w-3 text-text-light" />
                     ) : null}
                     {isLast ? (
-                      <span aria-current="page" className="text-ink">
+                      <span aria-current="page" className="text-text-dark">
                         {crumb.name}
                       </span>
                     ) : (
                       <Link
                         href={crumb.path}
-                        className="link-rule-in inline-flex min-h-6 items-center hover:text-ink"
+                        className="link-rule-in inline-flex min-h-6 items-center hover:text-text-dark"
                       >
                         {crumb.name}
                       </Link>
@@ -101,7 +101,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         </div>
       </PageHeader>
 
-      <section aria-labelledby="onderwerpen-titel" className="bg-paper">
+      <section aria-labelledby="onderwerpen-titel" className="bg-white">
         <Container>
           <div className="grid gap-14 py-20 lg:grid-cols-12 lg:gap-16 lg:py-24">
             <div className="lg:col-span-7">
@@ -115,19 +115,19 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
                 Onderwerpen binnen {service.title.toLowerCase()}
               </h2>
 
-              <ol className="mt-10 border-t border-line">
+              <ol className="mt-10 border-t border-rose/12">
                 {service.topics.map((topic, index) => (
                   <li
                     key={topic}
-                    className="reveal flex items-baseline gap-5 border-b border-line py-5"
+                    className="reveal flex items-baseline gap-5 border-b border-rose/12 py-5"
                   >
                     <span
                       aria-hidden="true"
-                      className="font-mono text-[0.6875rem] tracking-[0.2em] text-rust-deep tabular-nums"
+                      className="font-mono text-[0.6875rem] tracking-[0.2em] text-rose tabular-nums"
                     >
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <span className="text-[1.0625rem] leading-relaxed text-ink">
+                    <span className="text-[1.0625rem] leading-relaxed text-text-dark">
                       {topic}
                     </span>
                   </li>
@@ -137,7 +137,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
 
             <div className="lg:col-span-5">
               <div
-                className="reveal border border-line bg-cream px-7 pt-12 pb-10 lg:sticky lg:top-32"
+                className="reveal border border-rose/25 bg-cream px-7 pt-12 pb-10 lg:sticky lg:top-32"
                 style={{ borderRadius: '140px 140px 0 0' }}
               >
                 <Eyebrow index="02" className="justify-center">
@@ -146,13 +146,13 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
                 <ul className="mt-8 space-y-6">
                   {service.questions.map((question) => (
                     <li key={question}>
-                      <p className="font-display text-[1.1875rem] leading-snug text-ink-deep">
+                      <p className="font-display text-[1.1875rem] leading-snug text-text-dark">
                         “{question}”
                       </p>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-9 border-t border-line pt-6 text-[0.9375rem] leading-relaxed text-muted">
+                <p className="mt-9 border-t border-rose/25 pt-6 text-[0.9375rem] leading-relaxed text-text-dark">
                   Herkent u uw eigen vraag hierin niet helemaal? Dat hoeft ook niet — leg
                   ons uw situatie voor, dan zoeken wij samen uit wat er speelt.
                 </p>
@@ -167,7 +167,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         </Container>
       </section>
 
-      <section aria-labelledby="andere-titel" className="border-t border-line bg-cream">
+      <section aria-labelledby="andere-titel" className="border-t border-rose/12 bg-white">
         <Container>
           <div className="py-20 lg:py-24">
             <div className="reveal">
@@ -183,7 +183,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
                   <ServiceCard
                     service={other}
                     index={String(index + 1).padStart(2, '0')}
-                    surface="cream"
+                    surface="white"
                   />
                 </li>
               ))}
