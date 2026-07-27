@@ -15,7 +15,7 @@ export default function NotFound() {
             <h1 className="mt-6 font-display text-title">
               Deze pagina konden wij <span className="italic">niet</span> vinden
             </h1>
-            <p className="mt-6 max-w-xl text-lead text-text-medium">
+            <p className="mt-6 max-w-xl text-lead text-ink-soft">
               Mogelijk is de link verouderd of is er een typefout in het adres geslopen.
               Via onderstaande pagina&apos;s komt u alsnog waar u wezen moet.
             </p>
@@ -27,14 +27,14 @@ export default function NotFound() {
               </ButtonLink>
             </div>
 
-            <ul className="mt-14 grid gap-x-8 border-t border-rose/12 pt-6 sm:grid-cols-2">
+            <ul className="mt-14 grid gap-x-8 border-t border-gold/40 pt-6 sm:grid-cols-2">
               {nav.map((item, index) => (
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    className="inline-flex min-h-11 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.18em] text-text-dark uppercase"
+                    className="inline-flex min-h-11 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.18em] text-ink uppercase"
                   >
-                    <span aria-hidden="true" className="text-rose tabular-nums">
+                    <span aria-hidden="true" className="text-accent tabular-nums">
                       {String(index + 1).padStart(2, '0')}
                     </span>
                     <span className="link-rule-in">{item.label}</span>
@@ -47,7 +47,7 @@ export default function NotFound() {
           <div className="lg:col-span-4 lg:col-start-9">
             <div className="mx-auto max-w-[16rem]">
               <ArchFrame ratio="3 / 4" caption="Foutcode 404">
-                <span className="font-display text-[4.5rem] leading-none text-cream">
+                <span className="font-display text-[4.5rem] leading-none text-surface">
                   404
                 </span>
               </ArchFrame>

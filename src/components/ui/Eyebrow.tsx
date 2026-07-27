@@ -4,7 +4,7 @@ type EyebrowProps = {
   children: ReactNode;
   /** Two-digit section index, set in mono on the hairline. */
   index?: string;
-  tone?: 'onLight' | 'onDark';
+  tone?: 'onLight' | 'onSurface' | 'onDark';
   className?: string;
   as?: 'p' | 'span' | 'div';
 };
@@ -13,11 +13,15 @@ type EyebrowProps = {
  * Mono, uppercase, letterspaced section label preceded by a short rule —
  * the recurring "eyebrow" of the identity.
  *
- * The eyebrow is 11px, so it owes 4.5:1. On light surfaces it is always
- * rose-dark, never rose: the eyebrow lands on white (7.72:1) and on cream
- * cards (4.89:1), and rose on cream is only 3.56:1. On light surfaces the
- * index numeral is not dimmed either — rose-dark at 70% measures 3.46:1 on
- * cream. On dark surfaces cream at 70% is 5.22:1, so the dim stays there.
+ * The eyebrow is 11px, so it owes 4.5:1, and that is why there are three
+ * tones rather than two:
+ *   onLight   — the canvas. accent is 5.68:1 there.
+ *   onSurface — a cream card or band. accent is only 3.72:1 on cream, so the
+ *               eyebrow switches to ink (9.94:1). Using `onLight` on a cream
+ *               surface is an AA failure, not a style preference.
+ *   onDark    — a navy panel. cream on ink is 9.94:1.
+ * The index numeral is only dimmed on dark, where cream at 70% is still
+ * 5.22:1; dimming accent on a light surface would drop it under 4.5.
  */
 export function Eyebrow({
   children,
@@ -27,8 +31,10 @@ export function Eyebrow({
   as: Tag = 'p',
 }: EyebrowProps) {
   const onDark = tone === 'onDark';
-  const color = onDark ? 'text-cream' : 'text-rose-dark';
-  const ruleColor = onDark ? 'bg-cream/60' : 'bg-rose/70';
+  const color =
+    onDark ? 'text-surface' : tone === 'onSurface' ? 'text-ink' : 'text-accent';
+  const ruleColor =
+    onDark ? 'bg-surface/60' : tone === 'onSurface' ? 'bg-ink/45' : 'bg-gold/90';
 
   return (
     <Tag

@@ -66,22 +66,22 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         lead={service.intro}
         above={
           <nav aria-label="Kruimelpad" className="mb-8">
-            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.625rem] tracking-[0.18em] text-text-medium uppercase">
+            <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 font-mono text-[0.625rem] tracking-[0.18em] text-ink-soft uppercase">
               {trail.map((crumb, index) => {
                 const isLast = index === trail.length - 1;
                 return (
                   <li key={crumb.path} className="flex items-center gap-2">
                     {index > 0 ? (
-                      <ChevronRight aria-hidden="true" className="h-3 w-3 text-text-light" />
+                      <ChevronRight aria-hidden="true" className="h-3 w-3 text-ink-faint" />
                     ) : null}
                     {isLast ? (
-                      <span aria-current="page" className="text-text-dark">
+                      <span aria-current="page" className="text-ink">
                         {crumb.name}
                       </span>
                     ) : (
                       <Link
                         href={crumb.path}
-                        className="link-rule-in inline-flex min-h-6 items-center hover:text-text-dark"
+                        className="link-rule-in inline-flex min-h-6 items-center hover:text-ink"
                       >
                         {crumb.name}
                       </Link>
@@ -115,19 +115,19 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
                 Onderwerpen binnen {service.title.toLowerCase()}
               </h2>
 
-              <ol className="mt-10 border-t border-rose/12">
+              <ol className="mt-10 border-t border-gold/40">
                 {service.topics.map((topic, index) => (
                   <li
                     key={topic}
-                    className="reveal flex items-baseline gap-5 border-b border-rose/12 py-5"
+                    className="reveal flex items-baseline gap-5 border-b border-gold/40 py-5"
                   >
                     <span
                       aria-hidden="true"
-                      className="font-mono text-[0.6875rem] tracking-[0.2em] text-rose tabular-nums"
+                      className="font-mono text-[0.6875rem] tracking-[0.2em] text-accent tabular-nums"
                     >
                       {String(index + 1).padStart(2, '0')}
                     </span>
-                    <span className="text-[1.0625rem] leading-relaxed text-text-dark">
+                    <span className="text-[1.0625rem] leading-relaxed text-ink">
                       {topic}
                     </span>
                   </li>
@@ -137,22 +137,22 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
 
             <div className="lg:col-span-5">
               <div
-                className="reveal border border-rose/25 bg-cream px-7 pt-12 pb-10 lg:sticky lg:top-32"
+                className="reveal border border-gold/70 bg-surface px-7 pt-12 pb-10 lg:sticky lg:top-32"
                 style={{ borderRadius: '140px 140px 0 0' }}
               >
-                <Eyebrow index="02" className="justify-center">
+                <Eyebrow index="02" tone="onSurface" className="justify-center">
                   Vragen die wij horen
                 </Eyebrow>
                 <ul className="mt-8 space-y-6">
                   {service.questions.map((question) => (
                     <li key={question}>
-                      <p className="font-display text-[1.1875rem] leading-snug text-text-dark">
+                      <p className="font-display text-[1.1875rem] leading-snug text-ink">
                         “{question}”
                       </p>
                     </li>
                   ))}
                 </ul>
-                <p className="mt-9 border-t border-rose/25 pt-6 text-[0.9375rem] leading-relaxed text-text-dark">
+                <p className="mt-9 border-t border-gold/70 pt-6 text-[0.9375rem] leading-relaxed text-ink">
                   Herkent u uw eigen vraag hierin niet helemaal? Dat hoeft ook niet — leg
                   ons uw situatie voor, dan zoeken wij samen uit wat er speelt.
                 </p>
@@ -167,7 +167,7 @@ export default async function ServiceDetailPage({ params }: ServiceRouteProps) {
         </Container>
       </section>
 
-      <section aria-labelledby="andere-titel" className="border-t border-rose/12 bg-canvas">
+      <section aria-labelledby="andere-titel" className="border-t border-gold/40 bg-canvas">
         <Container>
           <div className="py-20 lg:py-24">
             <div className="reveal">

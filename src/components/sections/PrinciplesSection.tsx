@@ -5,14 +5,14 @@ import { SectionHeading } from '@/components/ui/SectionHeading';
 type PrinciplesSectionProps = {
   /** Home page numbers its sections; interior pages do not. */
   index?: string;
-  surface?: 'canvas' | 'cream';
+  surface?: 'canvas' | 'surface';
 };
 
 /* Body copy switches to text-dark on cream: text-medium measures 4.54:1 there
    and only 0.04 above AA, where on white it is a comfortable 7.16:1. */
 const surfaces = {
-  canvas: { section: 'bg-canvas', chip: 'bg-canvas', body: 'text-text-medium' },
-  cream: { section: 'bg-cream', chip: 'bg-cream', body: 'text-text-dark' },
+  canvas: { section: 'bg-canvas', chip: 'bg-canvas', body: 'text-ink-soft' },
+  surface: { section: 'bg-surface', chip: 'bg-surface', body: 'text-ink' },
 } as const;
 
 export function PrinciplesSection({ index, surface = 'canvas' }: PrinciplesSectionProps) {
@@ -21,7 +21,7 @@ export function PrinciplesSection({ index, surface = 'canvas' }: PrinciplesSecti
   return (
     <section
       aria-labelledby="uitgangspunten-titel"
-      className={`border-t border-rose/10 ${tone.section}`}
+      className={`border-t border-gold/30 ${tone.section}`}
     >
       <Container>
         <div className="py-20 lg:py-28">
@@ -37,10 +37,10 @@ export function PrinciplesSection({ index, surface = 'canvas' }: PrinciplesSecti
 
           <ul className="mt-16 grid gap-x-14 gap-y-12 md:grid-cols-2">
             {principles.map((principle) => (
-              <li key={principle.no} className="reveal relative border-t border-rose/12 pt-9">
+              <li key={principle.no} className="reveal relative border-t border-gold/40 pt-9">
                 <span
                   aria-hidden="true"
-                  className={`absolute -top-2 left-0 pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-rose-dark tabular-nums ${tone.chip}`}
+                  className={`absolute -top-2 left-0 pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-accent tabular-nums ${tone.chip}`}
                 >
                   {principle.no}
                 </span>

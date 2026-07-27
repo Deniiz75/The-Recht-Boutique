@@ -52,7 +52,7 @@ export default function OverOnsPage() {
 
       <section aria-labelledby="aanpak-titel" className="bg-canvas">
         <Container>
-          <div className="grid gap-14 border-b border-rose/12 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
+          <div className="grid gap-14 border-b border-gold/40 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
             <div className="lg:col-span-5">
               <div className="reveal relative mx-auto max-w-xs lg:max-w-none">
                 <ArchFrame ratio="3 / 4" caption="Advies · Contracten · Geschillen" />
@@ -60,7 +60,7 @@ export default function OverOnsPage() {
                   size={96}
                   tone="white"
                   uid="over-ons"
-                  className="absolute -bottom-8 -left-6 shadow-[0_10px_40px_-18px_rgba(45,42,38,0.45)]"
+                  className="absolute -bottom-8 -left-6 shadow-[0_10px_40px_-18px_rgba(22,35,59,0.45)]"
                 />
               </div>
             </div>
@@ -72,7 +72,7 @@ export default function OverOnsPage() {
               <h2 id="aanpak-titel" className="reveal mt-6 font-display text-title">
                 Eerst begrijpen, <span className="italic">dan</span> adviseren
               </h2>
-              <div className="reveal mt-7 space-y-5 text-[1.0625rem] leading-relaxed text-text-medium">
+              <div className="reveal mt-7 space-y-5 text-[1.0625rem] leading-relaxed text-ink-soft">
                 <p>
                   De meeste juridische vragen komen niet alleen. Achter een contract dat
                   moet worden beoordeeld zit een samenwerking die u wilt behouden; achter
@@ -99,7 +99,7 @@ export default function OverOnsPage() {
         </Container>
       </section>
 
-      <section aria-labelledby="keuzes-titel" className="border-t border-rose/10 bg-canvas">
+      <section aria-labelledby="keuzes-titel" className="border-t border-gold/30 bg-canvas">
         <Container>
           <div className="py-20 lg:py-28">
             <div className="reveal max-w-2xl">
@@ -107,7 +107,7 @@ export default function OverOnsPage() {
               <h2 id="keuzes-titel" className="mt-6 font-display text-title">
                 Wat wij <span className="italic">niet</span> doen
               </h2>
-              <p className="mt-5 text-lead text-text-medium">
+              <p className="mt-5 text-lead text-ink-soft">
                 Een boutique-aanpak betekent ook nee zeggen. Deze drie dingen laten wij
                 bewust achterwege.
               </p>
@@ -115,15 +115,15 @@ export default function OverOnsPage() {
 
             <ul className="mt-16 grid gap-x-12 gap-y-12 md:grid-cols-3">
               {choices.map((choice, index) => (
-                <li key={choice.title} className="reveal relative border-t border-rose/15 pt-9">
+                <li key={choice.title} className="reveal relative border-t border-gold/50 pt-9">
                   <span
                     aria-hidden="true"
-                    className="absolute -top-2 left-0 bg-canvas pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-rose tabular-nums"
+                    className="absolute -top-2 left-0 bg-canvas pr-3 font-mono text-[0.6875rem] tracking-[0.2em] text-accent tabular-nums"
                   >
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   <h3 className="font-display text-heading">{choice.title}</h3>
-                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-medium">
+                  <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink-soft">
                     {choice.text}
                   </p>
                 </li>

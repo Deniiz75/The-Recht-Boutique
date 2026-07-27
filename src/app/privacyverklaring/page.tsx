@@ -38,7 +38,7 @@ export default function PrivacyPage() {
         }
         lead="Deze verklaring beschrijft welke persoonsgegevens The Recht Boutique verwerkt, waarom wij dat doen en welke rechten u daarbij heeft."
       >
-        <p className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
+        <p className="font-mono text-[0.625rem] tracking-[0.2em] text-ink-soft uppercase">
           Laatst bijgewerkt: {updated}
         </p>
       </PageHeader>

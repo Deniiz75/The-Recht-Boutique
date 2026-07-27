@@ -137,19 +137,19 @@ function buildEmail(data: ValidPayload) {
     data.bericht,
   ].join('\n');
 
-  const html = `<div style="font-family:Georgia,serif;color:#2d2a26;line-height:1.6">
-  <p style="font:500 11px/1 monospace;letter-spacing:.2em;text-transform:uppercase;color:#a80037">
+  const html = `<div style="font-family:Georgia,serif;color:#16233b;line-height:1.6">
+  <p style="font:500 11px/1 monospace;letter-spacing:.2em;text-transform:uppercase;color:#7d6029">
     Contactformulier — ${escapeHtml(site.name)}
   </p>
   <table cellpadding="0" cellspacing="0" style="margin:20px 0;border-collapse:collapse">
     ${rows
       .map(
         ([label, value]) =>
-          `<tr><td style="padding:6px 24px 6px 0;color:#5c574f;font-size:13px">${escapeHtml(label)}</td><td style="padding:6px 0;font-size:15px">${escapeHtml(value)}</td></tr>`,
+          `<tr><td style="padding:6px 24px 6px 0;color:#454f66;font-size:13px">${escapeHtml(label)}</td><td style="padding:6px 0;font-size:15px">${escapeHtml(value)}</td></tr>`,
       )
       .join('')}
   </table>
-  <p style="margin:0 0 8px;color:#5c574f;font-size:13px">Bericht</p>
+  <p style="margin:0 0 8px;color:#454f66;font-size:13px">Bericht</p>
   <p style="white-space:pre-wrap;font-size:15px">${escapeHtml(data.bericht)}</p>
 </div>`;
 

@@ -20,7 +20,7 @@ export function DataValue({ value, className }: DataValueProps) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 border border-dashed border-rose-dark/70 px-1.5 py-px font-mono text-[0.82em] text-rose-dark ${className ?? ''}`}
+      className={`inline-flex items-center gap-1.5 border border-dashed border-accent/70 px-1.5 py-px font-mono text-[0.82em] text-accent ${className ?? ''}`}
       title={MARK_TITLE}
     >
       <span aria-hidden="true" className="text-[0.85em] opacity-70">
@@ -43,7 +43,7 @@ export function DataValueOnInk({ value, className }: DataValueProps) {
 
   return (
     <span
-      className={`inline-flex items-center gap-1.5 border border-dashed border-cream/70 px-1.5 py-px font-mono text-[0.82em] text-cream ${className ?? ''}`}
+      className={`inline-flex items-center gap-1.5 border border-dashed border-surface/70 px-1.5 py-px font-mono text-[0.82em] text-surface ${className ?? ''}`}
       title={MARK_TITLE}
     >
       <span aria-hidden="true" className="text-[0.85em] opacity-70">

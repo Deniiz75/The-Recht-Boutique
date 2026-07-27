@@ -14,9 +14,9 @@ export function PullQuote() {
   return (
     <section
       aria-labelledby="citaat-titel"
-      className="on-dark relative overflow-hidden bg-text-dark py-20 text-white lg:py-28"
+      className="on-dark relative overflow-hidden bg-ink py-20 text-white lg:py-28"
     >
-      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-cream/40" />
+      <span aria-hidden="true" className="absolute inset-x-0 top-0 h-px bg-surface/40" />
       <span
         aria-hidden="true"
         className="pointer-events-none absolute -bottom-32 left-1/2 h-[26rem] w-[22rem] -translate-x-1/2 border border-white/10"
@@ -34,7 +34,7 @@ export function PullQuote() {
               “{quoted.intro}”
             </p>
           </blockquote>
-          <p className="reveal mt-8 font-mono text-[0.625rem] tracking-[0.24em] text-cream uppercase">
+          <p className="reveal mt-8 font-mono text-[0.625rem] tracking-[0.24em] text-surface uppercase">
             The Recht Boutique — over{' '}
             <Link href={`/diensten/${quoted.slug}`} className="link-rule-in">
               {quoted.title.toLowerCase()}

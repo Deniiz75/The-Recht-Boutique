@@ -37,7 +37,7 @@ export default function FaqPage() {
         <Container>
           <div className="grid gap-12 py-16 lg:grid-cols-12 lg:gap-16 lg:py-24">
             <div className="lg:col-span-8">
-              <div className="border-t border-rose/15">
+              <div className="border-t border-gold/50">
                 {faq.map((item, index) => (
                   <Disclosure
                     key={item.q}
@@ -51,14 +51,14 @@ export default function FaqPage() {
 
             <aside className="lg:col-span-3 lg:col-start-10">
               <div
-                className="reveal border border-rose/25 bg-cream px-6 pt-10 pb-8 text-center lg:sticky lg:top-32"
+                className="reveal border border-gold/70 bg-surface px-6 pt-10 pb-8 text-center lg:sticky lg:top-32"
                 style={{ borderRadius: '120px 120px 0 0' }}
               >
                 <Seal size={72} tone="cream" uid="faq" className="mx-auto" />
                 <h2 className="mt-6 font-display text-[1.25rem] leading-snug">
                   Nog een vraag over uw situatie?
                 </h2>
-                <p className="mt-3 text-[0.9375rem] leading-relaxed text-text-dark">
+                <p className="mt-3 text-[0.9375rem] leading-relaxed text-ink">
                   Leg hem voor. U hoort binnen één werkdag van ons wat wij voor u kunnen
                   betekenen.
                 </p>

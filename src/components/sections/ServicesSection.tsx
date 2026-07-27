@@ -22,12 +22,12 @@ export function ServicesSection() {
             />
             <Link
               href="/diensten"
-              className="group reveal inline-flex min-h-11 shrink-0 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.2em] text-text-dark uppercase"
+              className="group reveal inline-flex min-h-11 shrink-0 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.2em] text-ink uppercase"
             >
               <span className="link-rule-in">Alle diensten</span>
               <ArrowRight
                 aria-hidden="true"
-                className="h-4 w-4 text-rose transition-transform duration-300 group-hover:translate-x-1"
+                className="h-4 w-4 text-accent transition-transform duration-300 group-hover:translate-x-1"
               />
             </Link>
           </div>

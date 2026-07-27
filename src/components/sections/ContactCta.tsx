@@ -26,7 +26,7 @@ export function ContactCta({
   return (
     <section
       aria-labelledby="cta-titel"
-      className="on-dark relative overflow-hidden bg-text-dark text-white"
+      className="on-dark relative overflow-hidden bg-ink text-white"
     >
       <span
         aria-hidden="true"
@@ -68,11 +68,11 @@ export function ContactCta({
             <div className="reveal flex items-start gap-6 border-t border-white/20 pt-8">
               <Seal size={84} tone="dark" uid={uid} />
               <dl className="text-[0.9375rem] text-white/80">
-                <dt className="font-mono text-[0.625rem] tracking-[0.24em] text-cream uppercase">
+                <dt className="font-mono text-[0.625rem] tracking-[0.24em] text-surface uppercase">
                   Bereikbaarheid
                 </dt>
                 <dd className="mt-2">{contact.hours}</dd>
-                <dt className="mt-5 font-mono text-[0.625rem] tracking-[0.24em] text-cream uppercase">
+                <dt className="mt-5 font-mono text-[0.625rem] tracking-[0.24em] text-surface uppercase">
                   E-mail
                 </dt>
                 <dd className="mt-2 break-all">

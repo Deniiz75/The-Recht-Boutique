@@ -95,7 +95,7 @@ export default function RootLayout({
       <body className="flex min-h-full flex-col bg-canvas">
         <a
           href="#hoofdinhoud"
-          className="sr-only font-mono text-xs tracking-[0.18em] uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-200 focus:inline-flex focus:min-h-11 focus:items-center focus:border focus:border-text-dark focus:bg-canvas focus:px-4 focus:text-text-dark"
+          className="sr-only font-mono text-xs tracking-[0.18em] uppercase focus:not-sr-only focus:fixed focus:top-3 focus:left-3 focus:z-200 focus:inline-flex focus:min-h-11 focus:items-center focus:border focus:border-ink focus:bg-canvas focus:px-4 focus:text-ink"
         >
           Direct naar de inhoud
         </a>

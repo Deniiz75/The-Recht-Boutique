@@ -28,14 +28,14 @@ export function Logo({ tone = 'onLight', uid = 'logo', className }: LogoProps) {
       <span className="flex flex-col leading-none">
         <span
           className={`font-display text-[1.0625rem] leading-none tracking-tight sm:text-[1.1875rem] ${
-            onDark ? 'text-white' : 'text-text-dark'
+            onDark ? 'text-white' : 'text-ink'
           }`}
         >
           The Recht <span className="italic">Boutique</span>
         </span>
         <span
           className={`mt-1.5 hidden font-mono text-[0.5625rem] tracking-[0.28em] uppercase sm:block ${
-            onDark ? 'text-cream' : 'text-rose-dark'
+            onDark ? 'text-surface' : 'text-ink'
           }`}
         >
           {site.tagline}

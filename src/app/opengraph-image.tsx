@@ -6,10 +6,10 @@ export const alt = `${site.name} — ${site.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const DARK = '#2d2a26';
+const DARK = '#16233b';
 const WHITE = '#ffffff';
 const CREAM = '#e3caab';
-const ROSE = '#cf0044';
+const GOLD = '#c9a961';
 
 export default async function OpengraphImage() {
   const fontData = await loadDisplayFont();
@@ -22,7 +22,7 @@ export default async function OpengraphImage() {
         display: 'flex',
         position: 'relative',
         backgroundColor: DARK,
-        backgroundImage: `radial-gradient(120% 90% at 12% 0%, rgba(227,202,171,0.16) 0%, rgba(45,42,38,0) 60%), radial-gradient(80% 70% at 95% 100%, rgba(224,51,102,0.30) 0%, rgba(45,42,38,0) 65%)`,
+        backgroundImage: `radial-gradient(120% 90% at 12% 0%, rgba(227,202,171,0.16) 0%, rgba(22,35,59,0) 60%), radial-gradient(80% 70% at 95% 100%, rgba(201,169,97,0.30) 0%, rgba(22,35,59,0) 65%)`,
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
@@ -111,7 +111,7 @@ export default async function OpengraphImage() {
             marginTop: 40,
             width: 140,
             height: 2,
-            backgroundColor: ROSE,
+            backgroundColor: GOLD,
           }}
         />
 

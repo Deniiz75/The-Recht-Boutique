@@ -4,10 +4,10 @@ import { loadDisplayFont } from '@/lib/og-font';
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 
-const DARK = '#2d2a26';
+const DARK = '#16233b';
 const WHITE = '#ffffff';
 const CREAM = '#e3caab';
-const ROSE = '#cf0044';
+const GOLD = '#c9a961';
 
 /** Monogram app icon in the house palette — dark field, cream frame, rose rule. */
 export default async function AppleIcon() {
@@ -24,7 +24,7 @@ export default async function AppleIcon() {
         justifyContent: 'center',
         backgroundColor: DARK,
         backgroundImage:
-          'radial-gradient(100% 80% at 30% 10%, rgba(227,202,171,0.22) 0%, rgba(45,42,38,0) 62%)',
+          'radial-gradient(100% 80% at 30% 10%, rgba(227,202,171,0.22) 0%, rgba(22,35,59,0) 62%)',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
@@ -57,7 +57,7 @@ export default async function AppleIcon() {
           marginTop: 14,
           width: 46,
           height: 2,
-          backgroundColor: ROSE,
+          backgroundColor: GOLD,
         }}
       />
     </div>

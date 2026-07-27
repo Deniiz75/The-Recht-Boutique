@@ -91,7 +91,7 @@ export function MobileMenu() {
         aria-expanded={open}
         aria-controls={panelId}
         onClick={() => setOpen(!open)}
-        className="inline-flex h-11 min-w-11 items-center gap-2 border border-text-dark px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-text-dark uppercase transition-colors hover:bg-text-dark hover:text-white"
+        className="inline-flex h-11 min-w-11 items-center gap-2 border border-ink px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-ink uppercase transition-colors hover:bg-ink hover:text-white"
       >
         {open ? (
           <X aria-hidden="true" className="h-4 w-4" />
@@ -108,16 +108,16 @@ export function MobileMenu() {
         role="dialog"
         aria-modal="true"
         aria-label="Hoofdmenu"
-        className="on-dark fixed inset-0 z-100 flex flex-col overflow-y-auto bg-text-dark px-5 pt-6 pb-12 text-white"
+        className="on-dark fixed inset-0 z-100 flex flex-col overflow-y-auto bg-ink px-5 pt-6 pb-12 text-white"
       >
         <div className="flex items-center justify-between">
-          <span className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
+          <span className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
             Menu
           </span>
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="inline-flex h-11 min-w-11 items-center gap-2 border border-white/40 px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-text-dark"
+            className="inline-flex h-11 min-w-11 items-center gap-2 border border-white/40 px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-ink"
           >
             <X aria-hidden="true" className="h-4 w-4" />
             Sluiten
@@ -130,11 +130,11 @@ export function MobileMenu() {
               <li key={item.href} className="border-b border-white/15">
                 <Link
                   href={item.href}
-                  className="flex items-baseline gap-4 py-5 font-display text-[1.75rem] leading-tight text-white transition-colors hover:text-cream"
+                  className="flex items-baseline gap-4 py-5 font-display text-[1.75rem] leading-tight text-white transition-colors hover:text-surface"
                 >
                   <span
                     aria-hidden="true"
-                    className="font-mono text-[0.625rem] tracking-[0.2em] text-cream/70 tabular-nums"
+                    className="font-mono text-[0.625rem] tracking-[0.2em] text-surface/70 tabular-nums"
                   >
                     {String(index + 1).padStart(2, '0')}
                   </span>
@@ -145,11 +145,11 @@ export function MobileMenu() {
             <li className="border-b border-white/15">
               <Link
                 href="/contact"
-                className="flex items-baseline gap-4 py-5 font-display text-[1.75rem] leading-tight text-cream"
+                className="flex items-baseline gap-4 py-5 font-display text-[1.75rem] leading-tight text-surface"
               >
                 <span
                   aria-hidden="true"
-                  className="font-mono text-[0.625rem] tracking-[0.2em] text-cream/70 tabular-nums"
+                  className="font-mono text-[0.625rem] tracking-[0.2em] text-surface/70 tabular-nums"
                 >
                   {String(nav.length + 1).padStart(2, '0')}
                 </span>
@@ -160,7 +160,7 @@ export function MobileMenu() {
         </nav>
 
         <div className="mt-auto pt-12">
-          <p className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
+          <p className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
             Direct contact
           </p>
           <div className="mt-4 flex flex-col gap-2 text-white/90">

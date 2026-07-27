@@ -91,14 +91,14 @@ export function ContactForm() {
         ref={successRef}
         tabIndex={-1}
         role="status"
-        className="border border-rose/25 bg-cream px-7 py-12 text-center sm:px-12"
+        className="border border-gold/70 bg-surface px-7 py-12 text-center sm:px-12"
         style={{ borderRadius: '160px 160px 0 0' }}
       >
-        <p className="font-mono text-[0.625rem] tracking-[0.24em] text-rose-dark uppercase">
+        <p className="font-mono text-[0.625rem] tracking-[0.24em] text-ink uppercase">
           Bericht verzonden
         </p>
         <h2 className="mt-6 font-display text-title">Dank u wel</h2>
-        <p className="mx-auto mt-5 max-w-md text-[1.0625rem] leading-relaxed text-text-dark">
+        <p className="mx-auto mt-5 max-w-md text-[1.0625rem] leading-relaxed text-ink">
           Uw bericht is bij ons aangekomen. U ontvangt binnen één werkdag antwoord van de
           jurist die uw vraag oppakt. Is er haast bij, bel ons dan gerust.
         </p>
@@ -121,12 +121,12 @@ export function ContactForm() {
           <div
             ref={alertRef}
             tabIndex={-1}
-            className="border border-rose-dark bg-rose-dark/5 px-5 py-5"
+            className="border border-accent bg-accent/5 px-5 py-5"
           >
-            <p className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-text-dark">
+            <p className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-ink">
               <AlertTriangle
                 aria-hidden="true"
-                className="mt-0.5 h-4 w-4 shrink-0 text-rose-dark"
+                className="mt-0.5 h-4 w-4 shrink-0 text-accent"
               />
               <span>
                 <strong className="font-semibold">Niet verzonden.</strong> {message}
@@ -134,19 +134,19 @@ export function ContactForm() {
             </p>
 
             {status === 'unavailable' ? (
-              <div className="mt-4 flex flex-col gap-2 border-t border-rose-dark/25 pt-4 font-mono text-[0.6875rem] tracking-[0.14em] uppercase">
+              <div className="mt-4 flex flex-col gap-2 border-t border-accent/25 pt-4 font-mono text-[0.6875rem] tracking-[0.14em] uppercase">
                 {phone ? (
-                  <a href={phone.href} className="link-rule-in w-fit text-rose-dark">
+                  <a href={phone.href} className="link-rule-in w-fit text-accent">
                     Bel {phone.display}
                   </a>
                 ) : null}
                 {email ? (
-                  <a href={`mailto:${email}`} className="link-rule-in w-fit text-rose-dark">
+                  <a href={`mailto:${email}`} className="link-rule-in w-fit text-accent">
                     Mail {email}
                   </a>
                 ) : null}
                 {!phone && !email ? (
-                  <span className="text-text-medium">
+                  <span className="text-ink-soft">
                     De contactgegevens worden vóór livegang ingevuld.
                   </span>
                 ) : null}
@@ -203,10 +203,10 @@ export function ContactForm() {
         <div>
           <label
             htmlFor={fieldId('onderwerp')}
-            className="font-mono text-[0.625rem] tracking-[0.2em] text-text-dark uppercase"
+            className="font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase"
           >
             Onderwerp{' '}
-            <span className="text-text-medium normal-case">(optioneel)</span>
+            <span className="text-ink-soft normal-case">(optioneel)</span>
           </label>
           <select
             id={fieldId('onderwerp')}
@@ -224,7 +224,7 @@ export function ContactForm() {
             ))}
           </select>
           {fieldErrors.onderwerp ? (
-            <p id={errorId('onderwerp')} className="mt-2 text-sm text-rose-dark">
+            <p id={errorId('onderwerp')} className="mt-2 text-sm text-accent">
               {fieldErrors.onderwerp}
             </p>
           ) : null}
@@ -234,7 +234,7 @@ export function ContactForm() {
       <div>
         <label
           htmlFor={fieldId('bericht')}
-          className="font-mono text-[0.625rem] tracking-[0.2em] text-text-dark uppercase"
+          className="font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase"
         >
           Uw vraag of situatie
         </label>
@@ -251,22 +251,22 @@ export function ContactForm() {
               : hintId('bericht')
           }
         />
-        <p id={hintId('bericht')} className="mt-2 text-sm text-text-medium">
+        <p id={hintId('bericht')} className="mt-2 text-sm text-ink-soft">
           Minimaal 20 tekens. Deel nog geen vertrouwelijke bijlagen — die bespreken wij
           liever persoonlijk.
         </p>
         {fieldErrors.bericht ? (
-          <p id={errorId('bericht')} className="mt-2 text-sm text-rose-dark">
+          <p id={errorId('bericht')} className="mt-2 text-sm text-accent">
             {fieldErrors.bericht}
           </p>
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-5 border-t border-rose/12 pt-7 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-sm leading-relaxed text-text-medium">
+      <div className="flex flex-col gap-5 border-t border-gold/40 pt-7 sm:flex-row sm:items-center sm:justify-between">
+        <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
           Wij gebruiken uw gegevens uitsluitend om uw vraag te beantwoorden. Lees hoe wij
           daarmee omgaan in onze{' '}
-          <Link href="/privacyverklaring" className="link-rule text-rose-dark">
+          <Link href="/privacyverklaring" className="link-rule text-accent">
             privacyverklaring
           </Link>
           .
@@ -309,10 +309,10 @@ function Field({
     <div>
       <label
         htmlFor={fieldId(name)}
-        className="font-mono text-[0.625rem] tracking-[0.2em] text-text-dark uppercase"
+        className="font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase"
       >
         {label}{' '}
-        {optional ? <span className="text-text-medium normal-case">(optioneel)</span> : null}
+        {optional ? <span className="text-ink-soft normal-case">(optioneel)</span> : null}
       </label>
       <input
         id={fieldId(name)}
@@ -324,7 +324,7 @@ function Field({
         aria-describedby={error ? errorId(name) : undefined}
       />
       {error ? (
-        <p id={errorId(name)} className="mt-2 text-sm text-rose-dark">
+        <p id={errorId(name)} className="mt-2 text-sm text-accent">
           {error}
         </p>
       ) : null}

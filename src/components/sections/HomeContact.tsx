@@ -34,7 +34,7 @@ export function HomeContact({ index }: HomeContactProps) {
     <section
       id="contact"
       aria-labelledby="home-contact-titel"
-      className="scroll-mt-24 border-t border-rose/12 bg-canvas"
+      className="scroll-mt-24 border-t border-gold/40 bg-canvas"
     >
       <Container>
         <div className="grid gap-14 py-20 lg:grid-cols-12 lg:gap-16 lg:py-28">
@@ -47,16 +47,16 @@ export function HomeContact({ index }: HomeContactProps) {
               Zullen we kennismaken?
             </h2>
 
-            <p className="reveal mt-6 max-w-md text-lead text-text-medium">
+            <p className="reveal mt-6 max-w-md text-lead text-ink-soft">
               Een eerste gesprek is vrijblijvend. U schetst uw situatie, wij vertellen u eerlijk
               of en hoe wij u verder kunnen helpen.
             </p>
 
-            <dl className="reveal mt-10 border-t border-rose/15">
-              <div className="flex gap-4 border-b border-rose/12 py-5">
-                <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
+            <dl className="reveal mt-10 border-t border-gold/50">
+              <div className="flex gap-4 border-b border-gold/40 py-5">
+                <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent" />
                 <div>
-                  <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
+                  <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-ink-soft uppercase">
                     Telefoon
                   </dt>
                   <dd className="mt-1.5 text-[0.9375rem]">
@@ -71,10 +71,10 @@ export function HomeContact({ index }: HomeContactProps) {
                 </div>
               </div>
 
-              <div className="flex gap-4 border-b border-rose/12 py-5">
-                <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
+              <div className="flex gap-4 border-b border-gold/40 py-5">
+                <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent" />
                 <div className="min-w-0">
-                  <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
+                  <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-ink-soft uppercase">
                     E-mail
                   </dt>
                   <dd className="mt-1.5 text-[0.9375rem] break-all">
@@ -89,13 +89,13 @@ export function HomeContact({ index }: HomeContactProps) {
                 </div>
               </div>
 
-              <div className="flex gap-4 border-b border-rose/12 py-5">
-                <Clock aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-rose" />
+              <div className="flex gap-4 border-b border-gold/40 py-5">
+                <Clock aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent" />
                 <div>
-                  <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-text-medium uppercase">
+                  <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-ink-soft uppercase">
                     Bereikbaarheid
                   </dt>
-                  <dd className="mt-1.5 text-[0.9375rem] text-text-medium">{contact.hours}</dd>
+                  <dd className="mt-1.5 text-[0.9375rem] text-ink-soft">{contact.hours}</dd>
                 </div>
               </div>
             </dl>

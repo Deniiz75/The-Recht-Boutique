@@ -12,7 +12,7 @@ type ExpectationsSectionProps = {
  */
 export function ExpectationsSection({ index }: ExpectationsSectionProps) {
   return (
-    <section aria-labelledby="verwachten-titel" className="border-t border-rose/12 bg-canvas">
+    <section aria-labelledby="verwachten-titel" className="border-t border-gold/40 bg-canvas">
       <Container>
         <div className="py-20 lg:py-28">
           <SectionHeading
@@ -30,23 +30,23 @@ export function ExpectationsSection({ index }: ExpectationsSectionProps) {
             {expectations.map((item, itemIndex) => (
               <li
                 key={item.title}
-                className="reveal flex h-full flex-col border border-rose/25 bg-cream px-6 pt-9 pb-8"
+                className="reveal flex h-full flex-col border border-gold/70 bg-surface px-6 pt-9 pb-8"
                 style={{ borderRadius: '96px 96px 0 0' }}
               >
                 <span
                   aria-hidden="true"
-                  className="mx-auto font-mono text-[0.625rem] tracking-[0.24em] text-rose-dark tabular-nums"
+                  className="mx-auto font-mono text-[0.625rem] tracking-[0.24em] text-ink tabular-nums"
                 >
                   {String(itemIndex + 1).padStart(2, '0')}
                 </span>
                 <span
                   aria-hidden="true"
-                  className="mx-auto mt-4 block h-px w-8 bg-rose/40"
+                  className="mx-auto mt-4 block h-px w-8 bg-gold/80"
                 />
                 <h3 className="mt-6 text-center font-display text-[1.25rem] leading-snug">
                   {item.title}
                 </h3>
-                <p className="mt-3 text-center text-[0.9375rem] leading-relaxed text-text-dark">
+                <p className="mt-3 text-center text-[0.9375rem] leading-relaxed text-ink">
                   {item.text}
                 </p>
               </li>

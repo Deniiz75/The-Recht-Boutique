@@ -8,14 +8,14 @@ type ProcessSectionProps = {
   index?: string;
   /** The summary variant links through to the full werkwijze page. */
   withLink?: boolean;
-  surface?: 'canvas' | 'cream';
+  surface?: 'canvas' | 'surface';
 };
 
 /* Body copy switches to text-dark on cream: text-medium measures 4.54:1 there
    and only 0.04 above AA, where on white it is a comfortable 7.16:1. */
 const surfaces = {
-  canvas: { section: 'bg-canvas', chip: 'bg-canvas', body: 'text-text-medium' },
-  cream: { section: 'bg-cream', chip: 'bg-cream', body: 'text-text-dark' },
+  canvas: { section: 'bg-canvas', chip: 'bg-canvas', body: 'text-ink-soft' },
+  surface: { section: 'bg-surface', chip: 'bg-surface', body: 'text-ink' },
 } as const;
 
 export function ProcessSection({
@@ -28,7 +28,7 @@ export function ProcessSection({
   return (
     <section
       aria-labelledby="werkwijze-titel"
-      className={`border-t border-rose/10 ${tone.section}`}
+      className={`border-t border-gold/30 ${tone.section}`}
     >
       <Container>
         <div className="py-20 lg:py-28">
@@ -45,12 +45,12 @@ export function ProcessSection({
             {withLink ? (
               <Link
                 href="/werkwijze"
-                className="group reveal inline-flex min-h-11 shrink-0 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.2em] text-text-dark uppercase"
+                className="group reveal inline-flex min-h-11 shrink-0 items-center gap-3 font-mono text-[0.6875rem] tracking-[0.2em] text-ink uppercase"
               >
                 <span className="link-rule-in">De werkwijze in detail</span>
                 <ArrowRight
                   aria-hidden="true"
-                  className="h-4 w-4 text-rose transition-transform duration-300 group-hover:translate-x-1"
+                  className="h-4 w-4 text-accent transition-transform duration-300 group-hover:translate-x-1"
                 />
               </Link>
             ) : null}
@@ -60,11 +60,11 @@ export function ProcessSection({
             {processSteps.map((step) => (
               <li
                 key={step.step}
-                className="card-lift reveal group relative border-t border-rose/15 pt-9 hover:border-rose-dark"
+                className="card-lift reveal group relative border-t border-gold/50 pt-9 hover:border-accent"
               >
                 <span
                   aria-hidden="true"
-                  className={`absolute -top-2.5 left-0 pr-3 font-display text-lg leading-none text-rose-dark tabular-nums ${tone.chip}`}
+                  className={`absolute -top-2.5 left-0 pr-3 font-display text-lg leading-none text-accent tabular-nums ${tone.chip}`}
                 >
                   {step.step}
                 </span>

@@ -12,11 +12,11 @@ export function SiteFooter() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="on-dark relative mt-auto overflow-hidden bg-text-dark text-white/85">
+    <footer className="on-dark relative mt-auto overflow-hidden bg-ink text-white/85">
       {/* Arch silhouette rising out of the footer's top edge. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-cream/15 md:block"
+        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-surface/15 md:block"
         style={{ borderRadius: '260px 260px 0 0' }}
       />
 
@@ -36,7 +36,7 @@ export function SiteFooter() {
           </div>
 
           <nav aria-label="Footernavigatie" className="md:col-span-3">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
+            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
               Navigatie
             </h2>
             <ul className="mt-5 space-y-1">
@@ -54,7 +54,7 @@ export function SiteFooter() {
           </nav>
 
           <div className="md:col-span-2">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
+            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
               Praktijk
             </h2>
             <ul className="mt-5 space-y-1">
@@ -72,7 +72,7 @@ export function SiteFooter() {
           </div>
 
           <div className="md:col-span-2">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-cream uppercase">
+            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
               Contact
             </h2>
             <address className="mt-5 space-y-3 text-[0.9375rem] not-italic">

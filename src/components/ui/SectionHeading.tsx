@@ -33,13 +33,13 @@ export function SectionHeading({
         {eyebrow}
       </Eyebrow>
       <h2
-        className={`mt-6 font-display text-title ${tone === 'onDark' ? 'text-white' : 'text-text-dark'}`}
+        className={`mt-6 font-display text-title ${tone === 'onDark' ? 'text-white' : 'text-ink'}`}
       >
         {title}
       </h2>
       {intro ? (
         <div
-          className={`mt-5 text-lead ${tone === 'onDark' ? 'text-white/75' : 'text-text-medium'}`}
+          className={`mt-5 text-lead ${tone === 'onDark' ? 'text-white/75' : 'text-ink-soft'}`}
         >
           {intro}
         </div>

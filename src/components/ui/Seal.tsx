@@ -14,25 +14,25 @@ const LEGEND = 'THE RECHT BOUTIQUE · JURIDISCH ADVIES · ';
 
 const tones = {
   dark: {
-    surface: 'var(--color-text-dark)',
-    ring: 'color-mix(in oklab, var(--color-cream) 70%, transparent)',
-    hair: 'color-mix(in oklab, var(--color-cream) 40%, transparent)',
-    text: 'var(--color-cream)',
-    icon: 'text-cream',
+    surface: 'var(--color-ink)',
+    ring: 'color-mix(in oklab, var(--color-surface) 70%, transparent)',
+    hair: 'color-mix(in oklab, var(--color-surface) 40%, transparent)',
+    text: 'var(--color-surface)',
+    icon: 'text-surface',
   },
   white: {
     surface: 'var(--color-white)',
-    ring: 'var(--color-rose)',
-    hair: 'color-mix(in oklab, var(--color-rose) 35%, transparent)',
-    text: 'var(--color-text-dark)',
-    icon: 'text-rose',
+    ring: 'var(--color-accent)',
+    hair: 'color-mix(in oklab, var(--color-accent) 35%, transparent)',
+    text: 'var(--color-ink)',
+    icon: 'text-accent',
   },
   cream: {
-    surface: 'var(--color-cream-dark)',
-    ring: 'var(--color-text-dark)',
-    hair: 'color-mix(in oklab, var(--color-text-dark) 35%, transparent)',
-    text: 'var(--color-text-dark)',
-    icon: 'text-text-dark',
+    surface: 'var(--color-surface-deep)',
+    ring: 'var(--color-ink)',
+    hair: 'color-mix(in oklab, var(--color-ink) 35%, transparent)',
+    text: 'var(--color-ink)',
+    icon: 'text-ink',
   },
 } as const;
 

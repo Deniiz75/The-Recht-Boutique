@@ -10,7 +10,7 @@ export function TrustBar() {
   return (
     <section
       aria-labelledby="waarden-titel"
-      className="border-y border-rose/15 bg-cream-dark text-text-dark"
+      className="border-y border-gold/50 bg-surface-deep text-ink"
     >
       <Container>
         <h2 id="waarden-titel" className="sr-only">
@@ -22,10 +22,10 @@ export function TrustBar() {
               {index > 0 ? (
                 <span
                   aria-hidden="true"
-                  className="hidden h-1.5 w-1.5 rotate-45 bg-rose-dark sm:block"
+                  className="hidden h-1.5 w-1.5 rotate-45 bg-accent sm:block"
                 />
               ) : null}
-              <span className="font-display text-xl text-text-dark italic sm:text-2xl">
+              <span className="font-display text-xl text-ink italic sm:text-2xl">
                 {value}
               </span>
             </li>

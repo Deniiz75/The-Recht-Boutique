@@ -32,23 +32,23 @@ export function MobileActionBar() {
 
   return (
     <div
-      className="fixed inset-x-0 bottom-0 z-40 border-t border-rose/20 bg-canvas/95 backdrop-blur-sm sm:hidden"
+      className="fixed inset-x-0 bottom-0 z-40 border-t border-gold/60 bg-canvas/95 backdrop-blur-sm sm:hidden"
       style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
     >
       <nav aria-label="Snelle acties" className="flex items-stretch gap-px">
         {phone ? (
           <a
             href={phone.href}
-            className="flex min-h-14 flex-1 items-center justify-center gap-2.5 border-r border-rose/15 font-mono text-[0.6875rem] tracking-[0.16em] text-text-dark uppercase transition-colors hover:text-rose-dark"
+            className="flex min-h-14 flex-1 items-center justify-center gap-2.5 border-r border-gold/50 font-mono text-[0.6875rem] tracking-[0.16em] text-ink uppercase transition-colors hover:text-accent"
           >
-            <Phone aria-hidden="true" className="h-4 w-4 text-rose-dark" />
+            <Phone aria-hidden="true" className="h-4 w-4 text-accent" />
             Bellen
           </a>
         ) : null}
 
         <Link
           href={messageHref}
-          className="flex min-h-14 flex-1 items-center justify-center gap-2.5 bg-rose font-mono text-[0.6875rem] tracking-[0.16em] text-white uppercase transition-colors hover:bg-rose-dark"
+          className="flex min-h-14 flex-1 items-center justify-center gap-2.5 bg-ink font-mono text-[0.6875rem] tracking-[0.16em] text-white uppercase transition-colors hover:bg-accent"
         >
           <MessageSquare aria-hidden="true" className="h-4 w-4" />
           Bericht
