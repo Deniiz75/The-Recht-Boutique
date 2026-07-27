@@ -1,0 +1,440 @@
+@import "tailwindcss";
+
+/* ───────────────────────────────────────────────────────────────────────────
+   The Recht Boutique — design tokens
+   Editorial / letterpress identity: forest ink on warm paper, arch motif,
+   hairline rules, mono numerals, square corners.
+   ─────────────────────────────────────────────────────────────────────────── */
+
+@theme {
+  /* Palette */
+  --color-ink: #123d36;
+  --color-ink-deep: #0b2d27;
+  --color-paper: #fffcf6;
+  --color-cream: #f7f3ea;
+  --color-sand: #e9dfcb;
+  --color-rust: #bd5d3e;
+  /* rust #BD5D3E scores 4.27:1 on paper and 4.38:1 behind white text — below
+     the 4.5:1 AA threshold. rust-deep is the token for anything textual
+     (links, buttons with white labels); plain rust is decorative / large only. */
+  --color-rust-deep: #a2452a;
+  --color-gold: #d6ad59;
+  --color-muted: #62726a;
+  --color-line: #d7d1c3;
+
+  /* Radii — deliberately square everywhere except the arch motif. */
+  --radius-none: 0px;
+  --radius-arch: 260px 260px 0 0;
+
+  /* Editorial type scale */
+  --text-display: clamp(2.75rem, 1.6rem + 5.1vw, 5.75rem);
+  --text-display--line-height: 0.98;
+  --text-display--letter-spacing: -0.025em;
+  --text-title: clamp(2rem, 1.35rem + 2.9vw, 3.5rem);
+  --text-title--line-height: 1.06;
+  --text-title--letter-spacing: -0.02em;
+  --text-heading: clamp(1.5rem, 1.2rem + 1.35vw, 2.125rem);
+  --text-heading--line-height: 1.14;
+  --text-heading--letter-spacing: -0.015em;
+  --text-lead: clamp(1.0625rem, 1rem + 0.4vw, 1.3125rem);
+  --text-lead--line-height: 1.62;
+  --text-eyebrow: 0.6875rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.22em;
+
+  --tracking-eyebrow: 0.22em;
+
+  /* Animation */
+  --ease-editorial: cubic-bezier(0.22, 0.61, 0.36, 1);
+}
+
+@theme inline {
+  --font-display: var(--font-playfair), "Iowan Old Style", Georgia, serif;
+  --font-sans: var(--font-manrope), ui-sans-serif, system-ui, sans-serif;
+  --font-mono: var(--font-dm-mono), ui-monospace, "SFMono-Regular", monospace;
+}
+
+/* ── Textures ─────────────────────────────────────────────────────────────── */
+:root {
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)'/%3E%3C/svg%3E");
+}
+
+@layer base {
+  html {
+    -webkit-text-size-adjust: 100%;
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background-color: var(--color-paper);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.65;
+    font-synthesis-weight: none;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* Paper grain — fixed so it reads as stock, not as a moving pattern. */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 60;
+    pointer-events: none;
+    background-image: var(--grain);
+    opacity: 0.035;
+    mix-blend-mode: multiply;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-display);
+    font-weight: 500;
+    font-optical-sizing: auto;
+    color: var(--color-ink-deep);
+    text-wrap: balance;
+  }
+
+  p {
+    text-wrap: pretty;
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--color-rust-deep);
+    outline-offset: 2px;
+    border-radius: 0;
+  }
+
+  ::selection {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  /* Dark surfaces flip the focus ring so it stays visible. */
+  .on-dark :focus-visible {
+    outline-color: var(--color-gold);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.001ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.001ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
+
+@layer components {
+  /* ── Arch: the signature frame shape ─────────────────────────────────── */
+  .arch {
+    border-radius: var(--radius-arch);
+  }
+
+  /* Composed, photo-free arch fill: layered ink gradient + engraved lines. */
+  .arch-fill {
+    background-color: var(--color-ink);
+    background-image:
+      radial-gradient(
+        120% 78% at 26% 8%,
+        color-mix(in oklab, var(--color-sand) 34%, transparent) 0%,
+        transparent 58%
+      ),
+      radial-gradient(
+        90% 62% at 88% 96%,
+        color-mix(in oklab, var(--color-rust) 40%, transparent) 0%,
+        transparent 62%
+      ),
+      linear-gradient(
+        168deg,
+        var(--color-ink) 0%,
+        var(--color-ink-deep) 62%,
+        #071f1b 100%
+      );
+  }
+
+  /* Fine engraved hairlines — the "banknote" texture on dark panels. */
+  .engrave::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background-image: repeating-linear-gradient(
+      -22deg,
+      color-mix(in oklab, var(--color-paper) 22%, transparent) 0px,
+      color-mix(in oklab, var(--color-paper) 22%, transparent) 0.5px,
+      transparent 0.5px,
+      transparent 7px
+    );
+    opacity: 0.5;
+    mask-image: radial-gradient(85% 70% at 50% 35%, #000 0%, transparent 82%);
+  }
+
+  /* ── Buttons: square corners, letterpress feel ───────────────────────── */
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.625rem;
+    min-height: 3rem;
+    padding: 0.875rem 1.75rem;
+    border-radius: 0;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    line-height: 1;
+    text-align: center;
+    transition:
+      background-color 0.35s var(--ease-editorial),
+      color 0.35s var(--ease-editorial),
+      border-color 0.35s var(--ease-editorial),
+      box-shadow 0.35s var(--ease-editorial),
+      transform 0.35s var(--ease-editorial);
+  }
+
+  .btn-primary {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+    border: 1px solid var(--color-ink);
+    box-shadow: 6px 6px 0 0 color-mix(in oklab, var(--color-ink) 14%, transparent);
+  }
+
+  .btn-primary:hover {
+    background-color: var(--color-rust-deep);
+    border-color: var(--color-rust-deep);
+    box-shadow: 3px 3px 0 0
+      color-mix(in oklab, var(--color-rust-deep) 22%, transparent);
+    transform: translate(2px, 2px);
+  }
+
+  .btn-outline {
+    background-color: transparent;
+    color: var(--color-ink);
+    border: 1px solid var(--color-ink);
+  }
+
+  .btn-outline:hover {
+    background-color: var(--color-ink);
+    color: var(--color-paper);
+  }
+
+  .btn-onink {
+    background-color: var(--color-paper);
+    color: var(--color-ink-deep);
+    border: 1px solid var(--color-paper);
+    box-shadow: 6px 6px 0 0 color-mix(in oklab, #000 22%, transparent);
+  }
+
+  .btn-onink:hover {
+    background-color: var(--color-gold);
+    border-color: var(--color-gold);
+    transform: translate(2px, 2px);
+    box-shadow: 3px 3px 0 0 color-mix(in oklab, #000 26%, transparent);
+  }
+
+  /* ── Editorial link: rule grows from the baseline ─────────────────────── */
+  .link-rule {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 100% 1px;
+    transition: background-size 0.4s var(--ease-editorial);
+  }
+
+  .link-rule:hover {
+    background-size: 0% 1px;
+    background-position: 100% 100%;
+  }
+
+  .link-rule-in {
+    background-image: linear-gradient(currentColor, currentColor);
+    background-repeat: no-repeat;
+    background-position: 0 100%;
+    background-size: 0% 1px;
+    transition: background-size 0.4s var(--ease-editorial);
+  }
+
+  .link-rule-in:hover,
+  a:hover .link-rule-in {
+    background-size: 100% 1px;
+  }
+
+  /* ── Form fields: square, hairline is 3:1 against paper ───────────────── */
+  .field {
+    width: 100%;
+    border-radius: 0;
+    border: 1px solid var(--color-muted);
+    background-color: color-mix(in oklab, var(--color-paper) 70%, #fff);
+    color: var(--color-ink-deep);
+    padding: 0.875rem 1rem;
+    min-height: 3rem;
+    font-family: var(--font-sans);
+    font-size: 1rem;
+    line-height: 1.5;
+    transition:
+      border-color 0.3s var(--ease-editorial),
+      box-shadow 0.3s var(--ease-editorial);
+  }
+
+  .field::placeholder {
+    color: color-mix(in oklab, var(--color-muted) 78%, transparent);
+  }
+
+  .field:hover {
+    border-color: var(--color-ink);
+  }
+
+  .field:focus {
+    border-color: var(--color-ink);
+    box-shadow: inset 0 -2px 0 0 var(--color-rust-deep);
+  }
+
+  .field[aria-invalid="true"] {
+    border-color: var(--color-rust-deep);
+    box-shadow: inset 0 -2px 0 0 var(--color-rust-deep);
+  }
+
+  /* ── Long-form legal copy (privacyverklaring) ─────────────────────────── */
+  .prose-legal h2 {
+    font-size: var(--text-heading);
+    line-height: 1.15;
+    letter-spacing: -0.015em;
+    margin-top: 3.5rem;
+    margin-bottom: 1rem;
+  }
+
+  .prose-legal h3 {
+    font-family: var(--font-sans);
+    font-weight: 700;
+    font-size: 1.0625rem;
+    letter-spacing: 0.01em;
+    color: var(--color-ink-deep);
+    margin-top: 2rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-legal p,
+  .prose-legal li {
+    color: var(--color-muted);
+    line-height: 1.75;
+  }
+
+  .prose-legal p {
+    margin-bottom: 1.125rem;
+    max-width: 68ch;
+  }
+
+  .prose-legal ul {
+    list-style: none;
+    margin-bottom: 1.5rem;
+    max-width: 68ch;
+  }
+
+  .prose-legal li {
+    position: relative;
+    padding-left: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+
+  .prose-legal li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.75em;
+    width: 0.625rem;
+    height: 1px;
+    background-color: var(--color-rust);
+  }
+
+  .prose-legal a {
+    color: var(--color-rust-deep);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  /* ── Native disclosure styling (FAQ, no JS required) ──────────────────── */
+  .disclosure summary::-webkit-details-marker {
+    display: none;
+  }
+
+  .disclosure summary {
+    list-style: none;
+    cursor: pointer;
+  }
+
+  .disclosure[open] .disclosure-sign {
+    transform: rotate(90deg);
+  }
+}
+
+@layer utilities {
+  /* Entrance: staggered reveal on load. Opt-in via inline animation-delay. */
+  @media (prefers-reduced-motion: no-preference) {
+    .rise {
+      animation: rise 0.9s var(--ease-editorial) both;
+    }
+
+    /* Scroll-linked reveal where supported.
+
+       Deliberately transform-only: a scroll timeline that never advances (a
+       page opened at an anchor, restored scroll position, an element inside a
+       clipped container) would otherwise leave the element stuck at its
+       starting keyframe. Text must never be able to end up invisible, so the
+       worst case here is content sitting 14px lower than intended. */
+    @supports (animation-timeline: view()) {
+      .reveal {
+        animation: rise-soft 1s var(--ease-editorial) both;
+        animation-timeline: view();
+        animation-range: entry 5% cover 26%;
+      }
+
+      .rule-draw {
+        animation: rule-draw 1s var(--ease-editorial) both;
+        animation-timeline: view();
+        animation-range: entry 10% cover 24%;
+      }
+    }
+  }
+
+  /* Time-based load stagger — always runs to completion, so fading is safe. */
+  @keyframes rise {
+    from {
+      opacity: 0;
+      transform: translateY(1.25rem);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rise-soft {
+    from {
+      transform: translateY(0.875rem);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes rule-draw {
+    from {
+      transform: scaleX(0);
+    }
+    to {
+      transform: scaleX(1);
+    }
+  }
+}
