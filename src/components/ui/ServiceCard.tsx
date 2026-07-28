@@ -24,7 +24,7 @@ export function ServiceCard({ service, index, surface = 'canvas' }: ServiceCardP
   return (
     <Link
       href={`/diensten/${service.slug}`}
-      className="card-lift group relative flex h-full flex-col border-t border-gold/50 pt-9 pb-2 hover:border-accent"
+      className="@container card-lift group relative flex h-full flex-col border-t border-gold/50 pt-9 pb-2 hover:border-accent"
     >
       <span
         aria-hidden="true"
@@ -37,15 +37,32 @@ export function ServiceCard({ service, index, surface = 'canvas' }: ServiceCardP
         {service.audience}
       </p>
 
-      <h3 className="mt-4 font-display text-heading text-ink transition-colors group-hover:text-accent">
+      {/* The title sizes off the card's own width, not the viewport's.
+          `Ondernemingsrecht` is one unbreakable word: at the shared
+          `text-heading` (34px at 1280) it needs 303px, and a quarter of this
+          grid is 258px, so it ran into the next column. The same card also
+          appears three-up and two-up, where 34px is right — a viewport clamp
+          cannot serve both, a container clamp can. 10.5cqw is the widest that
+          still fits the longest title, with the old ceiling kept for the wide
+          layouts. `hyphens` is the last resort for a future longer title. */}
+      <h3 className="mt-4 font-display text-[clamp(1.25rem,10.5cqw,2.125rem)] leading-[1.14] tracking-[-0.015em] text-ink hyphens-auto transition-colors group-hover:text-accent">
         {service.title}
       </h3>
 
-      <p className={`mt-4 flex-1 text-[0.9375rem] leading-relaxed ${tone.body}`}>
+      <p className={`mt-4 text-[0.9375rem] leading-relaxed ${tone.body}`}>
         {service.summary}
       </p>
 
-      <span className="mt-7 inline-flex min-h-11 items-center gap-2 font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase">
+      {/* `mt-auto` pins this to the bottom edge of the card, and the grid
+          stretches every card to the tallest, so the four links share one
+          baseline whatever the title or summary above them does.
+          Tracking is 0.08em rather than 0.2em because the longest label,
+          `Meer over geschillen & procedures`, was the only one wrapping to a
+          second line. Measured in a 258px quarter column at 1280, with 21px
+          taken by the arrow and its gap: 0.2em needs 264px, 0.12em still 238px,
+          0.08em 224px. Below the four-up breakpoint the column is 198px and it
+          wraps regardless — the bottoms stay aligned either way. */}
+      <span className="mt-auto inline-flex min-h-11 items-center gap-2 pt-7 font-mono text-[0.625rem] tracking-[0.08em] text-ink uppercase">
         <span className="link-rule-in">Meer over {service.title.toLowerCase()}</span>
         <ArrowUpRight
           aria-hidden="true"
