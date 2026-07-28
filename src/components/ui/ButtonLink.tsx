@@ -16,7 +16,7 @@ type ButtonLinkProps = {
   className?: string;
 };
 
-/** Square-cornered, mono-labelled link button. */
+/** Square-cornered link button. Typography lives in `.btn` in globals.css. */
 export function ButtonLink({
   href,
   children,

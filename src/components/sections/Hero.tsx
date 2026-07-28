@@ -27,11 +27,15 @@ export function Hero() {
             </Eyebrow>
 
             {/* Trust indicator. Sits between the eyebrow and the H1 and is
-                deliberately quieter than both: mono, 10px, text-medium
-                (6.93:1 on canvas). Every point here is one the site makes
-                good on elsewhere — see the note on trustPoints in site.ts. */}
+                deliberately quieter than both: 11px, ink-soft (7.93:1 on
+                canvas). Every point here is one the site makes good on
+                elsewhere — see the note on trustPoints in site.ts.
+
+                Set in the body sans at 0.08em. At the previous mono/0.14em the
+                gaps inside a word were wide enough that "WERKDAG" read as two
+                words; the content was never wrong. */}
             <ul
-              className="rise mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-mono text-[0.625rem] tracking-[0.14em] text-ink-soft uppercase"
+              className="rise mt-4 flex flex-wrap items-center gap-x-4 gap-y-1.5 font-sans text-[0.6875rem] font-medium tracking-[0.08em] text-ink-soft uppercase"
               style={{ animationDelay: '45ms' }}
             >
               {trustPoints.map((point, index) => (
@@ -72,16 +76,24 @@ export function Hero() {
               </ButtonLink>
             </div>
 
+            {/* Index of practice areas. The number sits above the label rather
+                than beside it: `Ondernemingsrecht` is a single unbreakable word
+                that already needs 142px, and a quarter of this column is 135px
+                at 1280 — inline, the number of the next item was overlapping it.
+                Stacked, the label owns the full column width. */}
             <ul
-              className="rise mt-14 grid grid-cols-2 gap-x-6 gap-y-3 border-t border-gold/40 pt-6 sm:grid-cols-4"
+              className="rise mt-14 grid grid-cols-2 gap-x-6 gap-y-5 border-t border-gold/40 pt-6 sm:grid-cols-4"
               style={{ animationDelay: '340ms' }}
             >
               {services.map((service, index) => (
                 <li
                   key={service.slug}
-                  className="font-mono text-[0.625rem] tracking-[0.16em] text-ink-soft uppercase"
+                  className="font-sans text-[0.625rem] font-medium tracking-[0.06em] text-ink-soft uppercase"
                 >
-                  <span aria-hidden="true" className="mr-2 text-accent tabular-nums">
+                  <span
+                    aria-hidden="true"
+                    className="mb-1.5 block text-accent tabular-nums"
+                  >
                     {String(index + 1).padStart(2, '0')}
                   </span>
                   {service.title}

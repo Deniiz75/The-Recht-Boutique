@@ -1,7 +1,7 @@
 import type { ReactNode } from 'react';
 
 type ArchFrameProps = {
-  /** Mono caption set along the bottom of the arch. */
+  /** Caption set along the bottom of the arch. */
   caption?: string;
   /** Optional content rendered inside the arch, above the engraving. */
   children?: ReactNode;
@@ -56,7 +56,7 @@ export function ArchFrame({
       ) : null}
 
       {caption ? (
-        <p className="absolute inset-x-0 bottom-6 z-10 px-6 text-center font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
+        <p className="absolute inset-x-0 bottom-6 z-10 px-6 text-center font-sans text-[0.6875rem] font-medium tracking-[0.1em] text-surface uppercase">
           {caption}
         </p>
       ) : null}
