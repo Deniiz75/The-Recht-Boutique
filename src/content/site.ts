@@ -58,8 +58,13 @@ export const contact = {
   phoneDisplay: 'TODO: +31 (0)00 000 0000',
   /** TODO: echt telefoonnummer in E.164 voor de tel: link. */
   phoneHref: 'tel:+310000000000',
-  /** TODO: echt e-mailadres. */
-  email: 'TODO: info@therechtboutique.nl',
+  /**
+   * TODO: echt e-mailadres.
+   * Bewust géén plausibel ogend adres als placeholder: de footer toont
+   * contactgegevens als platte tekst, en `info@therechtboutique.nl` leest
+   * daar als een werkend adres dat in werkelijkheid nergens heen gaat.
+   */
+  email: 'TODO: e-mailadres volgt',
   /** TODO: echt vestigingsadres. */
   address: {
     street: 'TODO: straat en huisnummer',

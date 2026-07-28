@@ -16,13 +16,13 @@ export function SiteFooter() {
       {/* Arch silhouette rising out of the footer's top edge. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-surface/15 md:block"
+        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-surface/15 lg:block"
         style={{ borderRadius: '260px 260px 0 0' }}
       />
 
       <Container>
-        <div className="relative grid gap-12 py-16 md:grid-cols-12 md:gap-8 lg:py-20">
-          <div className="md:col-span-5">
+        <div className="relative grid gap-12 py-16 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-12 lg:gap-8 lg:py-20">
+          <div className="sm:col-span-2 lg:col-span-4">
             <div className="flex items-center gap-4">
               <Seal size={64} tone="dark" uid="footer" />
               <p className="font-display text-2xl leading-none text-white">
@@ -35,7 +35,7 @@ export function SiteFooter() {
             </p>
           </div>
 
-          <nav aria-label="Footernavigatie" className="md:col-span-3">
+          <nav aria-label="Footernavigatie" className="lg:col-span-3">
             <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
               Navigatie
             </h2>
@@ -53,7 +53,7 @@ export function SiteFooter() {
             </ul>
           </nav>
 
-          <div className="md:col-span-2">
+          <div className="lg:col-span-2">
             <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
               Praktijk
             </h2>
@@ -71,51 +71,68 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="md:col-span-2">
+          <div className="lg:col-span-3">
             <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
               Contact
             </h2>
+            {/* Contact details run in the body font at body size, placeholder or
+                not — the footer repeats on every page, so a marker here reads as
+                noise. DataValueOnInk keeps its title/sr-only warning. */}
             <address className="mt-5 space-y-3 text-[0.9375rem] not-italic">
               <div>
                 {phone ? (
-                  <a href={phone.href} className="link-rule-in inline-flex min-h-11 items-center py-1 text-white/80 hover:text-white">
+                  <a
+                    href={phone.href}
+                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-white/80 hover:text-white"
+                  >
                     {phone.display}
                   </a>
                 ) : (
-                  <DataValueOnInk value={contact.phoneDisplay} />
+                  <DataValueOnInk
+                    variant="plain"
+                    value={contact.phoneDisplay}
+                    className="text-white/80"
+                  />
                 )}
               </div>
               <div>
                 {email ? (
                   <a
                     href={`mailto:${email}`}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 break-all text-white/80 hover:text-white"
+                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-white/80 wrap-anywhere hover:text-white"
                   >
                     {email}
                   </a>
                 ) : (
-                  <DataValueOnInk value={contact.email} />
+                  <DataValueOnInk
+                    variant="plain"
+                    value={contact.email}
+                    className="text-white/80"
+                  />
                 )}
               </div>
+              {/* Three fixed lines: street + number, postcode + city, country.
+                  Same shape whether the values are real or still placeholders,
+                  so the block never reflows once they are filled in. */}
               <div className="space-y-1 text-white/70">
-                {address ? (
-                  <>
-                    <p>{address.street}</p>
-                    <p>
-                      {address.postalCode} {address.city}
-                    </p>
-                    <p>{address.country}</p>
-                  </>
-                ) : (
-                  <>
-                    <DataValueOnInk value={contact.address.street} />
-                    <br />
-                    <DataValueOnInk value={contact.address.postalCode} />{' '}
-                    <DataValueOnInk value={contact.address.city} />
-                    <br />
-                    <span>{contact.address.country}</span>
-                  </>
-                )}
+                <p>
+                  {address ? (
+                    address.street
+                  ) : (
+                    <DataValueOnInk variant="plain" value={contact.address.street} />
+                  )}
+                </p>
+                <p>
+                  {address ? (
+                    `${address.postalCode} ${address.city}`
+                  ) : (
+                    <>
+                      <DataValueOnInk variant="plain" value={contact.address.postalCode} />{' '}
+                      <DataValueOnInk variant="plain" value={contact.address.city} />
+                    </>
+                  )}
+                </p>
+                <p>{contact.address.country}</p>
               </div>
               <p className="text-white/60">{contact.hours}</p>
             </address>
@@ -128,10 +145,10 @@ export function SiteFooter() {
           </p>
           <p className="flex flex-wrap items-center gap-x-5 gap-y-2">
             <span className="inline-flex items-center gap-2">
-              KvK <DataValueOnInk value={legal.kvk} />
+              KvK <DataValueOnInk variant="plain" value={legal.kvk} />
             </span>
             <span className="inline-flex items-center gap-2">
-              BTW <DataValueOnInk value={legal.btw} />
+              BTW <DataValueOnInk variant="plain" value={legal.btw} />
             </span>
           </p>
           <Link
