@@ -13,7 +13,7 @@ type DisclosureProps = {
 export function Disclosure({ question, answer, index }: DisclosureProps) {
   return (
     <details className="disclosure group border-b border-gold/40">
-      <summary className="flex min-h-14 items-baseline gap-4 py-5 pr-2 text-ink transition-colors hover:text-accent">
+      <summary className="flex min-h-14 items-baseline gap-4 py-5 pr-2 text-ink transition-colors hover:text-brand-deep">
         <span
           aria-hidden="true"
           className="font-mono text-[0.6875rem] tracking-[0.2em] text-accent tabular-nums"

@@ -3,10 +3,10 @@
 import { useId, useRef, useState } from 'react';
 import Link from 'next/link';
 import { AlertTriangle, Loader2, Send } from 'lucide-react';
-import { services } from '@/content/site';
-import { realEmail, realPhone } from '@/lib/placeholder';
+import { contactSubjects } from '@/content/site';
+import { realEmail } from '@/lib/placeholder';
 
-type FieldName = 'naam' | 'email' | 'telefoon' | 'onderwerp' | 'bericht';
+type FieldName = 'naam' | 'email' | 'onderwerp' | 'bericht';
 type FieldErrors = Partial<Record<FieldName, string>>;
 type Status = 'idle' | 'submitting' | 'success' | 'error' | 'unavailable';
 
@@ -17,13 +17,8 @@ type ApiResponse = {
   fields?: FieldErrors;
 };
 
-const SUBJECTS = [
-  ...services.map((service) => service.title),
-  'Anders / weet ik nog niet',
-];
-
 const GENERIC_FAILURE =
-  'Uw bericht kon niet worden verzonden. Er is dus nog geen contact met ons — probeer het opnieuw of neem rechtstreeks contact op.';
+  'Uw bericht kon niet worden verzonden. Er is dus nog geen contact met ons — probeer het opnieuw of stuur ons rechtstreeks een e-mail.';
 
 export function ContactForm() {
   const [status, setStatus] = useState<Status>('idle');
@@ -37,7 +32,6 @@ export function ContactForm() {
   const errorId = (name: string) => `${uid}-${name}-fout`;
   const hintId = (name: string) => `${uid}-${name}-hint`;
 
-  const phone = realPhone();
   const email = realEmail();
   const busy = status === 'submitting';
   const failed = status === 'error' || status === 'unavailable';
@@ -91,16 +85,15 @@ export function ContactForm() {
         ref={successRef}
         tabIndex={-1}
         role="status"
-        className="border border-gold/70 bg-surface px-7 py-12 text-center sm:px-12"
-        style={{ borderRadius: '160px 160px 0 0' }}
+        className="rounded-xl border border-rose/15 bg-white px-7 py-12 text-center sm:px-12"
       >
-        <p className="font-mono text-[0.625rem] tracking-[0.24em] text-ink uppercase">
+        <p className="text-[0.8rem] font-semibold tracking-[3px] text-rose-light uppercase">
           Bericht verzonden
         </p>
-        <h2 className="mt-6 font-display text-title">Dank u wel</h2>
-        <p className="mx-auto mt-5 max-w-md text-[1.0625rem] leading-relaxed text-ink">
+        <h2 className="mt-6 font-serif text-title text-rose">Dank u wel</h2>
+        <p className="mx-auto mt-5 max-w-md text-[1.0625rem] leading-relaxed text-text-medium">
           Uw bericht is bij ons aangekomen. U ontvangt binnen één werkdag antwoord van de
-          jurist die uw vraag oppakt. Is er haast bij, bel ons dan gerust.
+          jurist die uw vraag oppakt.
         </p>
         <button
           type="button"
@@ -114,19 +107,19 @@ export function ContactForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} noValidate className="space-y-7">
+    <form onSubmit={handleSubmit} noValidate className="space-y-5">
       {/* Status region — announced whether the send succeeded or failed. */}
       <div aria-live="polite" aria-atomic="true">
         {failed ? (
           <div
             ref={alertRef}
             tabIndex={-1}
-            className="border border-accent bg-accent/5 px-5 py-5"
+            className="rounded-xl border border-rose bg-rose-soft px-5 py-5"
           >
-            <p className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-ink">
+            <p className="flex items-start gap-3 text-[0.9375rem] leading-relaxed text-text-dark">
               <AlertTriangle
                 aria-hidden="true"
-                className="mt-0.5 h-4 w-4 shrink-0 text-accent"
+                className="mt-0.5 h-4 w-4 shrink-0 text-rose-dark"
               />
               <span>
                 <strong className="font-semibold">Niet verzonden.</strong> {message}
@@ -134,22 +127,16 @@ export function ContactForm() {
             </p>
 
             {status === 'unavailable' ? (
-              <div className="mt-4 flex flex-col gap-2 border-t border-accent/25 pt-4 font-mono text-[0.6875rem] tracking-[0.14em] uppercase">
-                {phone ? (
-                  <a href={phone.href} className="link-rule-in w-fit text-accent">
-                    Bel {phone.display}
-                  </a>
-                ) : null}
+              <div className="mt-4 flex flex-col gap-2 border-t border-rose/25 pt-4 text-[0.85rem] font-semibold">
                 {email ? (
-                  <a href={`mailto:${email}`} className="link-rule-in w-fit text-accent">
+                  <a href={`mailto:${email}`} className="link-rule-in w-fit text-rose-dark">
                     Mail {email}
                   </a>
-                ) : null}
-                {!phone && !email ? (
-                  <span className="text-ink-soft">
+                ) : (
+                  <span className="text-text-medium">
                     De contactgegevens worden vóór livegang ingevuld.
                   </span>
-                ) : null}
+                )}
               </div>
             ) : null}
           </div>
@@ -171,10 +158,12 @@ export function ContactForm() {
         />
       </div>
 
-      <div className="grid gap-7 sm:grid-cols-2">
+      {/* No phone field: we reply by e-mail only for now. */}
+      <div className="grid gap-x-4 sm:grid-cols-2">
         <Field
           label="Naam"
           name="naam"
+          placeholder="Uw volledige naam"
           autoComplete="name"
           error={fieldErrors.naam}
           fieldId={fieldId}
@@ -184,66 +173,51 @@ export function ContactForm() {
           label="E-mailadres"
           name="email"
           type="email"
+          placeholder="uw@email.nl"
           autoComplete="email"
           error={fieldErrors.email}
           fieldId={fieldId}
           errorId={errorId}
         />
-        <Field
-          label="Telefoonnummer"
-          name="telefoon"
-          type="tel"
-          optional
-          autoComplete="tel"
-          error={fieldErrors.telefoon}
-          fieldId={fieldId}
-          errorId={errorId}
-        />
-
-        <div>
-          <label
-            htmlFor={fieldId('onderwerp')}
-            className="font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase"
-          >
-            Onderwerp{' '}
-            <span className="text-ink-soft normal-case">(optioneel)</span>
-          </label>
-          <select
-            id={fieldId('onderwerp')}
-            name="onderwerp"
-            defaultValue=""
-            className="field mt-3"
-            aria-invalid={fieldErrors.onderwerp ? true : undefined}
-            aria-describedby={fieldErrors.onderwerp ? errorId('onderwerp') : undefined}
-          >
-            <option value="">Kies een praktijkgebied</option>
-            {SUBJECTS.map((subject) => (
-              <option key={subject} value={subject}>
-                {subject}
-              </option>
-            ))}
-          </select>
-          {fieldErrors.onderwerp ? (
-            <p id={errorId('onderwerp')} className="mt-2 text-sm text-accent">
-              {fieldErrors.onderwerp}
-            </p>
-          ) : null}
-        </div>
       </div>
 
       <div>
-        <label
-          htmlFor={fieldId('bericht')}
-          className="font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase"
+        <label htmlFor={fieldId('onderwerp')} className={LABEL}>
+          Waar gaat het over?
+        </label>
+        <select
+          id={fieldId('onderwerp')}
+          name="onderwerp"
+          defaultValue=""
+          className="field"
+          aria-invalid={fieldErrors.onderwerp ? true : undefined}
+          aria-describedby={fieldErrors.onderwerp ? errorId('onderwerp') : undefined}
         >
-          Uw vraag of situatie
+          <option value="">Kies een onderwerp</option>
+          {contactSubjects.map((subject) => (
+            <option key={subject} value={subject}>
+              {subject}
+            </option>
+          ))}
+        </select>
+        {fieldErrors.onderwerp ? (
+          <p id={errorId('onderwerp')} className="mt-2 text-sm font-medium text-rose-dark">
+            {fieldErrors.onderwerp}
+          </p>
+        ) : null}
+      </div>
+
+      <div>
+        <label htmlFor={fieldId('bericht')} className={LABEL}>
+          Uw bericht
+          <RequiredMark />
         </label>
         <textarea
           id={fieldId('bericht')}
           name="bericht"
-          rows={7}
-          className="field mt-3 resize-y"
-          placeholder="Beschrijf kort wat er speelt en wat u zou willen bereiken."
+          rows={5}
+          className="field min-h-[120px] resize-y"
+          placeholder="Beschrijf kort uw juridische vraag of situatie…"
           aria-invalid={fieldErrors.bericht ? true : undefined}
           aria-describedby={
             fieldErrors.bericht
@@ -251,36 +225,52 @@ export function ContactForm() {
               : hintId('bericht')
           }
         />
-        <p id={hintId('bericht')} className="mt-2 text-sm text-ink-soft">
+        <p id={hintId('bericht')} className="mt-2 text-[0.8rem] text-text-medium">
           Minimaal 20 tekens. Deel nog geen vertrouwelijke bijlagen — die bespreken wij
           liever persoonlijk.
         </p>
         {fieldErrors.bericht ? (
-          <p id={errorId('bericht')} className="mt-2 text-sm text-accent">
+          <p id={errorId('bericht')} className="mt-2 text-sm font-medium text-rose-dark">
             {fieldErrors.bericht}
           </p>
         ) : null}
       </div>
 
-      <div className="flex flex-col gap-5 border-t border-gold/40 pt-7 sm:flex-row sm:items-center sm:justify-between">
-        <p className="max-w-sm text-sm leading-relaxed text-ink-soft">
-          Wij gebruiken uw gegevens uitsluitend om uw vraag te beantwoorden. Lees hoe wij
-          daarmee omgaan in onze{' '}
-          <Link href="/privacyverklaring" className="link-rule text-accent">
-            privacyverklaring
-          </Link>
-          .
-        </p>
-        <button type="submit" className="btn btn-primary" disabled={busy}>
+      <div>
+        <button type="submit" className="btn btn-primary w-full" disabled={busy}>
           {busy ? (
             <Loader2 aria-hidden="true" className="h-4 w-4 animate-spin" />
           ) : (
             <Send aria-hidden="true" className="h-4 w-4" />
           )}
-          {busy ? 'Versturen…' : 'Bericht versturen'}
+          {busy ? 'Versturen…' : 'Verstuur bericht'}
         </button>
+        <p className="mt-4 text-center text-[0.8rem] text-text-medium">
+          Wij nemen binnen 24 uur contact met u op. Uw gegevens worden vertrouwelijk
+          behandeld — zie onze{' '}
+          <Link href="/privacyverklaring" className="link-rule text-rose">
+            privacyverklaring
+          </Link>
+          .
+        </p>
       </div>
     </form>
+  );
+}
+
+const LABEL = 'mb-2 block text-[0.85rem] font-semibold text-text-dark';
+
+/**
+ * The asterisk is decorative. "verplicht" is appended to the accessible name
+ * instead, because a screen reader announcing "Naam ster" tells the user
+ * nothing about the field being required.
+ */
+function RequiredMark() {
+  return (
+    <>
+      <span aria-hidden="true"> *</span>
+      <span className="sr-only"> verplicht</span>
+    </>
   );
 }
 
@@ -289,6 +279,7 @@ type FieldProps = {
   name: FieldName;
   type?: string;
   optional?: boolean;
+  placeholder?: string;
   autoComplete?: string;
   error?: string;
   fieldId: (name: string) => string;
@@ -300,6 +291,7 @@ function Field({
   name,
   type = 'text',
   optional = false,
+  placeholder,
   autoComplete,
   error,
   fieldId,
@@ -307,24 +299,22 @@ function Field({
 }: FieldProps) {
   return (
     <div>
-      <label
-        htmlFor={fieldId(name)}
-        className="font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase"
-      >
-        {label}{' '}
-        {optional ? <span className="text-ink-soft normal-case">(optioneel)</span> : null}
+      <label htmlFor={fieldId(name)} className={LABEL}>
+        {label}
+        {optional ? null : <RequiredMark />}
       </label>
       <input
         id={fieldId(name)}
         name={name}
         type={type}
+        placeholder={placeholder}
         autoComplete={autoComplete}
-        className="field mt-3"
+        className="field"
         aria-invalid={error ? true : undefined}
         aria-describedby={error ? errorId(name) : undefined}
       />
       {error ? (
-        <p id={errorId(name)} className="mt-2 text-sm text-accent">
+        <p id={errorId(name)} className="mt-2 text-sm font-medium text-rose-dark">
           {error}
         </p>
       ) : null}

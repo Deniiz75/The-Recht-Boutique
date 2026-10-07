@@ -5,7 +5,7 @@ import { contact, legal, site } from '@/content/site';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
 import { DataValue } from '@/components/ui/DataValue';
-import { realAddress, realEmail, realPhone } from '@/lib/placeholder';
+import { realAddress, realEmail } from '@/lib/placeholder';
 
 const title = 'Privacyverklaring';
 const description =
@@ -23,7 +23,6 @@ const updated = new Intl.DateTimeFormat('nl-NL', { dateStyle: 'long' }).format(
 );
 
 export default function PrivacyPage() {
-  const phone = realPhone();
   const email = realEmail();
   const address = realAddress();
 
@@ -64,14 +63,6 @@ export default function PrivacyPage() {
                 )}
               </li>
               <li>
-                Telefoon:{' '}
-                {phone ? (
-                  <a href={phone.href}>{phone.display}</a>
-                ) : (
-                  <DataValue value={contact.phoneDisplay} />
-                )}
-              </li>
-              <li>
                 Adres:{' '}
                 {address ? (
                   <>
@@ -103,16 +94,15 @@ export default function PrivacyPage() {
             <ul>
               <li>uw naam;</li>
               <li>uw e-mailadres;</li>
-              <li>uw telefoonnummer, als u dat invult (optioneel);</li>
               <li>het gekozen onderwerp of praktijkgebied (optioneel);</li>
               <li>de inhoud van uw bericht.</li>
             </ul>
             <p>
               Wat u in uw bericht schrijft, bepaalt u zelf. Wij vragen u geen bijzondere
               persoonsgegevens (zoals gegevens over gezondheid of strafrechtelijke
-              gegevens) via het formulier te delen; die bespreken wij liever telefonisch of
-              in persoon. Verstrekt u ze toch, dan verwerken wij ze uitsluitend om uw vraag
-              te kunnen beantwoorden.
+              gegevens) via het formulier te delen; die bespreken wij liever in een gesprek.
+              Verstrekt u ze toch, dan verwerken wij ze uitsluitend om uw vraag te kunnen
+              beantwoorden.
             </p>
 
             <h3>Technische gegevens</h3>

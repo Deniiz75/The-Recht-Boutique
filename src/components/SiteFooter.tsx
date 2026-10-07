@@ -1,68 +1,49 @@
 import Link from 'next/link';
-import { contact, legal, nav, services, site } from '@/content/site';
-import { Container } from '@/components/ui/Container';
-import { Seal } from '@/components/ui/Seal';
-import { DataValueOnInk } from '@/components/ui/DataValue';
-import { realAddress, realEmail, realPhone } from '@/lib/placeholder';
+import { footerIntro, legal, services, site } from '@/content/site';
 
+const quickLinks = [
+  { href: '/#waarom', label: 'Over ons' },
+  { href: '/#werkwijze', label: 'Werkwijze' },
+  { href: '/#reviews', label: 'Reviews' },
+  { href: '/#contact', label: 'Contact' },
+  { href: '/veelgestelde-vragen', label: 'Veelgestelde vragen' },
+  { href: '/privacyverklaring', label: 'Privacyverklaring' },
+] as const;
+
+/**
+ * Contrast on the near-black footer, measured against #2d2a26:
+ *   white/60  6.22:1  body and links
+ *   white/55  5.46:1  column labels — the reference build's white/40 is
+ *                     3.66:1, under AA for an 0.8rem label
+ *   cream     9.04:1  link hover; rose-light is only 3.29:1, which a 0.9rem
+ *                     link may not drop to
+ *   rose-light 3.29:1 the wordmark only, at 1.3rem bold, where 3:1 applies
+ */
 export function SiteFooter() {
-  const phone = realPhone();
-  const email = realEmail();
-  const address = realAddress();
-  const year = new Date().getFullYear();
-
   return (
-    <footer className="on-dark relative mt-auto overflow-hidden bg-ink text-white/85">
-      {/* Arch silhouette rising out of the footer's top edge. */}
-      <span
-        aria-hidden="true"
-        className="pointer-events-none absolute -top-24 -right-16 hidden h-72 w-72 border border-surface/15 lg:block"
-        style={{ borderRadius: '260px 260px 0 0' }}
-      />
-
-      <Container>
-        <div className="relative grid gap-12 py-16 sm:grid-cols-2 sm:gap-x-10 lg:grid-cols-12 lg:gap-8 lg:py-20">
-          <div className="sm:col-span-2 lg:col-span-4">
-            <div className="flex items-center gap-4">
-              <Seal size={64} tone="dark" uid="footer" />
-              <p className="font-display text-2xl leading-none text-white">
-                The Recht <span className="italic">Boutique</span>
-              </p>
-            </div>
-            <p className="mt-6 max-w-sm text-[0.9375rem] leading-relaxed text-white/70">
-              Een juridisch adviesbureau voor ondernemers en particulieren. Persoonlijk
-              advies, heldere taal en één vast aanspreekpunt.
-            </p>
+    <footer className="on-dark bg-text-dark pt-16 pb-8 text-white/60">
+      <div className="mx-auto max-w-[1340px] px-6">
+        <div className="mb-12 grid grid-cols-[2fr_1fr_1fr] gap-12 max-lg:grid-cols-1">
+          <div>
+            <Link
+              href="/"
+              className="mb-4 inline-block font-serif text-[1.3rem] font-bold text-rose-light"
+            >
+              The Recht <span className="font-normal">Boutique</span>
+            </Link>
+            <p className="max-w-[320px] text-[0.9rem] leading-relaxed">{footerIntro}</p>
           </div>
 
-          <nav aria-label="Footernavigatie" className="lg:col-span-3">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
-              Navigatie
+          <div>
+            <h2 className="mb-5 text-[0.8rem] font-semibold tracking-widest text-white/55 uppercase">
+              Diensten
             </h2>
-            <ul className="mt-5 space-y-1">
-              {[...nav, { href: '/contact', label: 'Contact' } as const].map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-white/80 hover:text-white"
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </nav>
-
-          <div className="lg:col-span-2">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
-              Praktijk
-            </h2>
-            <ul className="mt-5 space-y-1">
+            <ul className="list-none">
               {services.map((service) => (
-                <li key={service.slug}>
+                <li key={service.slug} className="mb-3">
                   <Link
                     href={`/diensten/${service.slug}`}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-[0.9375rem] text-white/80 hover:text-white"
+                    className="text-[0.9rem] text-white/60 transition-colors duration-300 hover:text-cream"
                   >
                     {service.title}
                   </Link>
@@ -71,94 +52,34 @@ export function SiteFooter() {
             </ul>
           </div>
 
-          <div className="lg:col-span-3">
-            <h2 className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
-              Contact
+          <div>
+            <h2 className="mb-5 text-[0.8rem] font-semibold tracking-widest text-white/55 uppercase">
+              Snelle links
             </h2>
-            {/* Contact details run in the body font at body size, placeholder or
-                not — the footer repeats on every page, so a marker here reads as
-                noise. DataValueOnInk keeps its title/sr-only warning. */}
-            <address className="mt-5 space-y-3 text-[0.9375rem] not-italic">
-              <div>
-                {phone ? (
-                  <a
-                    href={phone.href}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-white/80 hover:text-white"
+            <ul className="list-none">
+              {quickLinks.map((link) => (
+                <li key={link.href} className="mb-3">
+                  <Link
+                    href={link.href}
+                    className="text-[0.9rem] text-white/60 transition-colors duration-300 hover:text-cream"
                   >
-                    {phone.display}
-                  </a>
-                ) : (
-                  <DataValueOnInk
-                    variant="plain"
-                    value={contact.phoneDisplay}
-                    className="text-white/80"
-                  />
-                )}
-              </div>
-              <div>
-                {email ? (
-                  <a
-                    href={`mailto:${email}`}
-                    className="link-rule-in inline-flex min-h-11 items-center py-1 text-white/80 wrap-anywhere hover:text-white"
-                  >
-                    {email}
-                  </a>
-                ) : (
-                  <DataValueOnInk
-                    variant="plain"
-                    value={contact.email}
-                    className="text-white/80"
-                  />
-                )}
-              </div>
-              {/* Three fixed lines: street + number, postcode + city, country.
-                  Same shape whether the values are real or still placeholders,
-                  so the block never reflows once they are filled in. */}
-              <div className="space-y-1 text-white/70">
-                <p>
-                  {address ? (
-                    address.street
-                  ) : (
-                    <DataValueOnInk variant="plain" value={contact.address.street} />
-                  )}
-                </p>
-                <p>
-                  {address ? (
-                    `${address.postalCode} ${address.city}`
-                  ) : (
-                    <>
-                      <DataValueOnInk variant="plain" value={contact.address.postalCode} />{' '}
-                      <DataValueOnInk variant="plain" value={contact.address.city} />
-                    </>
-                  )}
-                </p>
-                <p>{contact.address.country}</p>
-              </div>
-              <p className="text-white/60">{contact.hours}</p>
-            </address>
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 border-t border-white/15 py-8 font-mono text-[0.6875rem] tracking-[0.12em] text-white/60 uppercase md:flex-row md:items-center md:justify-between">
-          <p>
-            © {year} {site.name}
-          </p>
-          <p className="flex flex-wrap items-center gap-x-5 gap-y-2">
-            <span className="inline-flex items-center gap-2">
-              KvK <DataValueOnInk variant="plain" value={legal.kvk} />
-            </span>
-            <span className="inline-flex items-center gap-2">
-              BTW <DataValueOnInk variant="plain" value={legal.btw} />
-            </span>
-          </p>
-          <Link
-            href="/privacyverklaring"
-            className="link-rule-in inline-flex min-h-11 items-center py-1 tracking-[0.12em] text-white/70 hover:text-white"
-          >
-            Privacyverklaring
-          </Link>
+        <div className="flex items-center justify-between border-t border-white/10 pt-7 text-[0.82rem] max-sm:flex-col max-sm:gap-3 max-sm:text-center">
+          <span>
+            © {new Date().getFullYear()} {site.name}. Alle rechten voorbehouden.
+          </span>
+          <span>
+            KvK: {legal.kvk} | BTW: {legal.btw}
+          </span>
         </div>
-      </Container>
+      </div>
     </footer>
   );
 }

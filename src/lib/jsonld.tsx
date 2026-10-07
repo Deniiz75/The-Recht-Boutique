@@ -1,5 +1,5 @@
 import { faq, services, site } from '@/content/site';
-import { realAddress, realEmail, realPhone } from '@/lib/placeholder';
+import { realAddress, realEmail } from '@/lib/placeholder';
 
 type JsonLdObject = Record<string, unknown>;
 
@@ -26,7 +26,6 @@ export function JsonLd({ data, id }: { data: JsonLdObject; id?: string }) {
  */
 export function organizationJsonLd(): JsonLdObject {
   const address = realAddress();
-  const phone = realPhone();
   const email = realEmail();
 
   const data: JsonLdObject = {
@@ -63,7 +62,8 @@ export function organizationJsonLd(): JsonLdObject {
       addressCountry: 'NL',
     };
   }
-  if (phone) data.telephone = phone.display;
+  /* No `telephone`: the site has no published number, and schema.org data that
+     contradicts the page is worse than an absent property. */
   if (email) data.email = email;
 
   /* `openingHours` is deliberately omitted: schema.org expects the machine

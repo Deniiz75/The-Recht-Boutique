@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import { services, site } from '@/content/site';
+import { contactSubjects, site } from '@/content/site';
 
 export const runtime = 'nodejs';
 
@@ -45,21 +45,16 @@ function clientIp(request: Request): string {
 /* ── Validation ────────────────────────────────────────────────────────── */
 
 const EMAIL_PATTERN = /^[^\s@]+@[^\s@]+\.[a-z]{2,}$/i;
-const PHONE_PATTERN = /^[0-9+()\-.\s]{6,40}$/;
 
-const SUBJECTS: readonly string[] = [
-  ...services.map((service) => service.title),
-  'Anders / weet ik nog niet',
-];
+const SUBJECTS: readonly string[] = contactSubjects;
 
 export type ContactFieldErrors = Partial<
-  Record<'naam' | 'email' | 'telefoon' | 'onderwerp' | 'bericht', string>
+  Record<'naam' | 'email' | 'onderwerp' | 'bericht', string>
 >;
 
 type ValidPayload = {
   naam: string;
   email: string;
-  telefoon: string;
   onderwerp: string;
   bericht: string;
 };
@@ -76,7 +71,6 @@ function validate(body: Record<string, unknown>): {
 
   const naam = asString(body.naam);
   const email = asString(body.email);
-  const telefoon = asString(body.telefoon);
   const onderwerp = asString(body.onderwerp);
   const bericht = asString(body.bericht);
 
@@ -92,10 +86,6 @@ function validate(body: Record<string, unknown>): {
     errors.email = 'Dit lijkt geen geldig e-mailadres.';
   }
 
-  if (telefoon.length > 0 && !PHONE_PATTERN.test(telefoon)) {
-    errors.telefoon = 'Dit lijkt geen geldig telefoonnummer.';
-  }
-
   if (onderwerp.length > 0 && !SUBJECTS.includes(onderwerp)) {
     errors.onderwerp = 'Kies een onderwerp uit de lijst.';
   }
@@ -106,7 +96,7 @@ function validate(body: Record<string, unknown>): {
     errors.bericht = 'Uw bericht mag maximaal 5000 tekens bevatten.';
   }
 
-  return { errors, data: { naam, email, telefoon, onderwerp, bericht } };
+  return { errors, data: { naam, email, onderwerp, bericht } };
 }
 
 /* ── Mail rendering ────────────────────────────────────────────────────── */
@@ -124,7 +114,6 @@ function buildEmail(data: ValidPayload) {
   const rows: ReadonlyArray<[string, string]> = [
     ['Naam', data.naam],
     ['E-mail', data.email],
-    ['Telefoon', data.telefoon || '—'],
     ['Onderwerp', data.onderwerp || '—'],
   ];
 
@@ -137,19 +126,19 @@ function buildEmail(data: ValidPayload) {
     data.bericht,
   ].join('\n');
 
-  const html = `<div style="font-family:Georgia,serif;color:#16233b;line-height:1.6">
-  <p style="font:500 11px/1 monospace;letter-spacing:.2em;text-transform:uppercase;color:#7d6029">
+  const html = `<div style="font-family:Georgia,serif;color:#000000;line-height:1.6">
+  <p style="font:500 11px/1 monospace;letter-spacing:.2em;text-transform:uppercase;color:#cf0044">
     Contactformulier — ${escapeHtml(site.name)}
   </p>
   <table cellpadding="0" cellspacing="0" style="margin:20px 0;border-collapse:collapse">
     ${rows
       .map(
         ([label, value]) =>
-          `<tr><td style="padding:6px 24px 6px 0;color:#454f66;font-size:13px">${escapeHtml(label)}</td><td style="padding:6px 0;font-size:15px">${escapeHtml(value)}</td></tr>`,
+          `<tr><td style="padding:6px 24px 6px 0;color:#333333;font-size:13px">${escapeHtml(label)}</td><td style="padding:6px 0;font-size:15px">${escapeHtml(value)}</td></tr>`,
       )
       .join('')}
   </table>
-  <p style="margin:0 0 8px;color:#454f66;font-size:13px">Bericht</p>
+  <p style="margin:0 0 8px;color:#333333;font-size:13px">Bericht</p>
   <p style="white-space:pre-wrap;font-size:15px">${escapeHtml(data.bericht)}</p>
 </div>`;
 
@@ -160,7 +149,7 @@ function buildEmail(data: ValidPayload) {
 
 const UNAVAILABLE =
   'Het contactformulier is op dit moment niet beschikbaar, waardoor uw bericht niet is verzonden. ' +
-  'Neem telefonisch of per e-mail contact met ons op, dan pakken wij het direct op.';
+  'Stuur ons een e-mail, dan pakken wij het direct op.';
 
 export async function POST(request: Request) {
   const apiKey = process.env.RESEND_API_KEY;
@@ -180,7 +169,7 @@ export async function POST(request: Request) {
       {
         ok: false,
         error:
-          'U heeft in korte tijd meerdere berichten verstuurd. Probeer het over tien minuten opnieuw of bel ons.',
+          'U heeft in korte tijd meerdere berichten verstuurd. Probeer het over tien minuten opnieuw of stuur ons een e-mail.',
       },
       { status: 429 },
     );

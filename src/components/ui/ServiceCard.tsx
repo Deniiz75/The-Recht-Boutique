@@ -24,7 +24,7 @@ export function ServiceCard({ service, index, surface = 'canvas' }: ServiceCardP
   return (
     <Link
       href={`/diensten/${service.slug}`}
-      className="@container card-lift group relative flex h-full flex-col border-t border-gold/50 pt-9 pb-2 hover:border-accent"
+      className="@container card-lift group relative flex h-full flex-col border-t border-gold/50 pt-9 pb-2 hover:border-brand"
     >
       <span
         aria-hidden="true"
@@ -45,7 +45,7 @@ export function ServiceCard({ service, index, surface = 'canvas' }: ServiceCardP
           cannot serve both, a container clamp can. 10.5cqw is the widest that
           still fits the longest title, with the old ceiling kept for the wide
           layouts. `hyphens` is the last resort for a future longer title. */}
-      <h3 className="mt-4 font-display text-[clamp(1.25rem,10.5cqw,2.125rem)] leading-[1.14] tracking-[-0.015em] text-ink hyphens-auto transition-colors group-hover:text-accent">
+      <h3 className="mt-4 font-display text-[clamp(1.25rem,10.5cqw,2.125rem)] leading-[1.14] tracking-[-0.015em] text-ink hyphens-auto transition-colors group-hover:text-brand-deep">
         {service.title}
       </h3>
 

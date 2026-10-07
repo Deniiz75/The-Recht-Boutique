@@ -4,12 +4,11 @@ import { loadDisplayFont } from '@/lib/og-font';
 export const size = { width: 180, height: 180 };
 export const contentType = 'image/png';
 
-const DARK = '#16233b';
-const WHITE = '#ffffff';
-const CREAM = '#e3caab';
-const GOLD = '#c9a961';
+const INK = '#000000';
+const BEIGE = '#e3caab';
+const BRAND = '#cf0044';
 
-/** Monogram app icon in the house palette — dark field, cream frame, rose rule. */
+/** Monogram app icon in the house palette — beige field, black monogram, pink rule. */
 export default async function AppleIcon() {
   const fontData = await loadDisplayFont();
 
@@ -22,9 +21,9 @@ export default async function AppleIcon() {
         flexDirection: 'column',
         alignItems: 'center',
         justifyContent: 'center',
-        backgroundColor: DARK,
+        backgroundColor: BEIGE,
         backgroundImage:
-          'radial-gradient(100% 80% at 30% 10%, rgba(227,202,171,0.22) 0%, rgba(22,35,59,0) 62%)',
+          'radial-gradient(100% 80% at 30% 10%, rgba(255,255,255,0.45) 0%, rgba(227,202,171,0) 62%)',
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
@@ -35,15 +34,15 @@ export default async function AppleIcon() {
           left: 12,
           right: 12,
           bottom: 12,
-          border: `1px solid ${CREAM}`,
-          opacity: 0.6,
+          border: `1px solid ${BRAND}`,
+          opacity: 0.7,
           display: 'flex',
         }}
       />
       <div
         style={{
           display: 'flex',
-          color: WHITE,
+          color: INK,
           fontSize: 74,
           letterSpacing: -2,
           lineHeight: 1,
@@ -57,7 +56,7 @@ export default async function AppleIcon() {
           marginTop: 14,
           width: 46,
           height: 2,
-          backgroundColor: GOLD,
+          backgroundColor: BRAND,
         }}
       />
     </div>

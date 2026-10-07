@@ -24,7 +24,7 @@ const details: Record<string, { detail: string; points: readonly string[] }> = {
     detail:
       'Het eerste gesprek is vrijblijvend en kosteloos. U vertelt wat er speelt; wij stellen vragen tot de juridische kern zichtbaar wordt. Vaak blijkt de vraag waarmee iemand binnenkomt net iets anders te liggen dan de vraag die werkelijk beantwoord moet worden.',
     points: [
-      'Telefonisch, per videogesprek of op kantoor — wat u het beste uitkomt',
+      'Per videogesprek of op kantoor — wat u het beste uitkomt',
       'U hoort of wij u kunnen helpen, en zo niet: waar u dan wél terechtkunt',
       'Heeft u een termijn die dreigt te verlopen, meld dat direct',
     ],

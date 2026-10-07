@@ -15,26 +15,27 @@ type PageHeaderProps = {
 /** The opening masthead of every interior page. */
 export function PageHeader({ eyebrow, title, lead, above, children }: PageHeaderProps) {
   return (
-    <section className="relative overflow-hidden border-b border-gold/40 bg-canvas">
-      {/* Faint arch outline anchoring the masthead. */}
+    /* pt clears the fixed site header, which is out of flow. The homepage
+       hero handles its own clearance so that it can still fill the viewport. */
+    <section className="relative overflow-hidden border-b border-rose/10 bg-cream pt-[70px]">
+      {/* Same rose bloom that opens the homepage hero. */}
       <span
         aria-hidden="true"
-        className="pointer-events-none absolute -right-16 bottom-0 hidden h-[22rem] w-[19rem] border border-gold/40 lg:block"
-        style={{ borderRadius: '260px 260px 0 0' }}
+        className="pointer-events-none absolute -top-[200px] -right-[200px] h-[600px] w-[600px] rounded-full bg-[radial-gradient(circle,rgba(207,0,68,0.06)_0%,transparent_70%)]"
       />
       <Container>
         <div className="relative py-14 lg:py-20">
           {above}
           <Eyebrow className="rise">{eyebrow}</Eyebrow>
           <h1
-            className="rise mt-6 max-w-4xl font-display text-title"
+            className="rise mt-4 max-w-4xl font-serif text-title font-semibold text-rose"
             style={{ animationDelay: '80ms' }}
           >
             {title}
           </h1>
           {lead ? (
             <div
-              className="rise mt-6 max-w-2xl text-lead text-ink-soft"
+              className="rise mt-6 max-w-2xl text-lead text-text-medium"
               style={{ animationDelay: '160ms' }}
             >
               {lead}

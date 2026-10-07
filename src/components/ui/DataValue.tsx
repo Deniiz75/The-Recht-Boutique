@@ -57,8 +57,8 @@ export function DataValue({ value, className, variant = 'marked' }: DataValuePro
 }
 
 /**
- * Same as `DataValue`, but tuned for dark (ink) surfaces where the bronze
- * accent would not carry enough contrast.
+ * Same as `DataValue`, but tuned for dark (ink) surfaces, where a black
+ * accent would carry no contrast at all.
  */
 export function DataValueOnInk({ value, className, variant = 'marked' }: DataValueProps) {
   if (!isPlaceholder(value)) {

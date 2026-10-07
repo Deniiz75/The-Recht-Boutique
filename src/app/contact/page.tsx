@@ -1,6 +1,6 @@
 import type { Metadata } from 'next';
 import { pageMetadata } from '@/lib/metadata';
-import { Clock, Mail, MapPin, Phone } from 'lucide-react';
+import { Clock, Mail, MapPin } from 'lucide-react';
 import { contact } from '@/content/site';
 import { Container } from '@/components/ui/Container';
 import { PageHeader } from '@/components/ui/PageHeader';
@@ -8,7 +8,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { Seal } from '@/components/ui/Seal';
 import { DataValue } from '@/components/ui/DataValue';
 import { ContactForm } from '@/components/ContactForm';
-import { realAddress, realEmail, realPhone } from '@/lib/placeholder';
+import { realAddress, realEmail } from '@/lib/placeholder';
 
 const title = 'Contact';
 const description =
@@ -22,7 +22,6 @@ export const metadata: Metadata = pageMetadata({
 });
 
 export default function ContactPage() {
-  const phone = realPhone();
   const email = realEmail();
   const address = realAddress();
 
@@ -54,24 +53,6 @@ export default function ContactPage() {
               </Eyebrow>
 
               <dl className="border-t border-gold/50">
-                <div className="flex gap-4 border-b border-gold/40 py-6">
-                  <Phone aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent" />
-                  <div>
-                    <dt className="font-mono text-[0.625rem] tracking-[0.2em] text-ink-soft uppercase">
-                      Telefoon
-                    </dt>
-                    <dd className="mt-2 text-[1.0625rem]">
-                      {phone ? (
-                        <a href={phone.href} className="link-rule-in text-ink">
-                          {phone.display}
-                        </a>
-                      ) : (
-                        <DataValue value={contact.phoneDisplay} />
-                      )}
-                    </dd>
-                  </div>
-                </div>
-
                 <div className="flex gap-4 border-b border-gold/40 py-6">
                   <Mail aria-hidden="true" className="mt-1 h-4 w-4 shrink-0 text-accent" />
                   <div className="min-w-0">

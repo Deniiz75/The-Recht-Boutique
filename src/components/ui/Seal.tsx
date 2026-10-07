@@ -20,8 +20,11 @@ const tones = {
     text: 'var(--color-surface)',
     icon: 'text-surface',
   },
+  /* Transparent, not white: this tone rides both the beige canvas and the
+     cream header, and a white disc on either now reads as a sticker rather
+     than as part of the paper. */
   white: {
-    surface: 'var(--color-white)',
+    surface: 'transparent',
     ring: 'var(--color-accent)',
     hair: 'color-mix(in oklab, var(--color-accent) 35%, transparent)',
     text: 'var(--color-ink)',

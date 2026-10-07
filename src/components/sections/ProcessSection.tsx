@@ -60,7 +60,7 @@ export function ProcessSection({
             {processSteps.map((step) => (
               <li
                 key={step.step}
-                className="card-lift reveal group relative border-t border-gold/50 pt-9 hover:border-accent"
+                className="card-lift reveal group relative border-t border-gold/50 pt-9 hover:border-brand"
               >
                 <span
                   aria-hidden="true"

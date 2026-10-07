@@ -6,10 +6,9 @@ export const alt = `${site.name} — ${site.tagline}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = 'image/png';
 
-const DARK = '#16233b';
-const WHITE = '#ffffff';
-const CREAM = '#e3caab';
-const GOLD = '#c9a961';
+const INK = '#000000';
+const BEIGE = '#e3caab';
+const BRAND = '#cf0044';
 
 export default async function OpengraphImage() {
   const fontData = await loadDisplayFont();
@@ -21,8 +20,8 @@ export default async function OpengraphImage() {
         height: '100%',
         display: 'flex',
         position: 'relative',
-        backgroundColor: DARK,
-        backgroundImage: `radial-gradient(120% 90% at 12% 0%, rgba(227,202,171,0.16) 0%, rgba(22,35,59,0) 60%), radial-gradient(80% 70% at 95% 100%, rgba(201,169,97,0.30) 0%, rgba(22,35,59,0) 65%)`,
+        backgroundColor: BEIGE,
+        backgroundImage: `radial-gradient(120% 90% at 12% 0%, rgba(255,255,255,0.42) 0%, rgba(227,202,171,0) 60%), radial-gradient(80% 70% at 95% 100%, rgba(207,0,68,0.16) 0%, rgba(227,202,171,0) 65%)`,
         fontFamily: '"Playfair Display", Georgia, serif',
       }}
     >
@@ -34,7 +33,7 @@ export default async function OpengraphImage() {
           left: 30,
           right: 30,
           bottom: 30,
-          border: `1px solid rgba(227,202,171,0.45)`,
+          border: `1px solid rgba(0,0,0,0.35)`,
           display: 'flex',
         }}
       />
@@ -49,7 +48,7 @@ export default async function OpengraphImage() {
           height: 430,
           borderTopLeftRadius: 260,
           borderTopRightRadius: 260,
-          border: `1px solid rgba(227,202,171,0.4)`,
+          border: `1px solid rgba(0,0,0,0.28)`,
           display: 'flex',
         }}
       />
@@ -62,7 +61,7 @@ export default async function OpengraphImage() {
           height: 350,
           borderTopLeftRadius: 200,
           borderTopRightRadius: 200,
-          border: `1px solid rgba(255,255,255,0.16)`,
+          border: `1px solid rgba(207,0,68,0.35)`,
           display: 'flex',
         }}
       />
@@ -83,7 +82,7 @@ export default async function OpengraphImage() {
             fontSize: 20,
             letterSpacing: 6,
             textTransform: 'uppercase',
-            color: CREAM,
+            color: INK,
             fontFamily: 'monospace',
           }}
         >
@@ -95,7 +94,7 @@ export default async function OpengraphImage() {
             display: 'flex',
             flexDirection: 'column',
             marginTop: 34,
-            color: WHITE,
+            color: BRAND,
             fontSize: 92,
             lineHeight: 1.02,
             letterSpacing: -2,
@@ -111,7 +110,7 @@ export default async function OpengraphImage() {
             marginTop: 40,
             width: 140,
             height: 2,
-            backgroundColor: GOLD,
+            backgroundColor: BRAND,
           }}
         />
 
@@ -120,7 +119,7 @@ export default async function OpengraphImage() {
             display: 'flex',
             marginTop: 34,
             fontSize: 34,
-            color: 'rgba(255,255,255,0.78)',
+            color: 'rgba(0,0,0,0.82)',
           }}
         >
           {site.tagline}
@@ -136,7 +135,7 @@ export default async function OpengraphImage() {
           fontSize: 18,
           letterSpacing: 4,
           textTransform: 'uppercase',
-          color: 'rgba(255,255,255,0.6)',
+          color: 'rgba(0,0,0,0.65)',
           fontFamily: 'monospace',
         }}
       >

@@ -32,57 +32,53 @@ export default function DienstenPage() {
         lead="Voor ondernemers en particulieren. Kies het gebied dat bij uw vraag past — of neem contact op als u niet zeker weet waar uw situatie thuishoort."
       />
 
-      <section aria-label="Overzicht van praktijkgebieden" className="bg-canvas">
+      <section aria-label="Overzicht van praktijkgebieden" className="bg-cream">
         <Container>
           <div className="py-16 lg:py-24">
-            <ul className="grid gap-x-14 gap-y-16 lg:grid-cols-2">
-              {services.map((service, index) => (
+            <ul className="grid gap-7 lg:grid-cols-2">
+              {services.map((service) => (
                 <li key={service.slug} className="reveal">
-                  <article className="group relative flex h-full flex-col border-t border-gold/50 pt-10">
-                    <span
+                  <article className="card card-wipe card-lift group relative flex h-full flex-col overflow-hidden p-10 hover:shadow-[0_8px_30px_rgba(45,42,38,0.08)]">
+                    <div
                       aria-hidden="true"
-                      className="absolute -top-2.5 left-0 bg-canvas pr-3 font-display text-lg leading-none text-accent tabular-nums"
+                      className="mb-6 flex h-14 w-14 items-center justify-center rounded-[14px] bg-rose-soft text-2xl"
                     >
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
+                      {service.icon}
+                    </div>
 
-                    <p className="font-mono text-[0.625rem] tracking-[0.22em] text-ink-soft uppercase">
-                      {service.audience}
-                    </p>
-
-                    <h2 className="mt-4 font-display text-heading">
+                    <h2 className="font-serif text-[1.3rem] font-semibold text-rose">
                       <Link
                         href={`/diensten/${service.slug}`}
-                        className="transition-colors after:absolute after:inset-0 after:content-[''] hover:text-accent"
+                        className="after:absolute after:inset-0 after:content-['']"
                       >
                         {service.title}
                       </Link>
                     </h2>
 
-                    <p className="mt-4 max-w-lg text-[1.0625rem] leading-relaxed text-ink-soft">
+                    <p className="mt-3 text-[0.95rem] leading-relaxed text-text-medium">
                       {service.summary}
                     </p>
 
-                    <ul className="mt-7 space-y-2.5 border-t border-gold/40 pt-6">
+                    <ul className="mt-6 space-y-2.5">
                       {service.topics.slice(0, 3).map((topic) => (
                         <li
                           key={topic}
-                          className="relative pl-5 text-[0.9375rem] leading-relaxed text-ink/85"
+                          className="relative pl-5 text-[0.9rem] leading-relaxed text-text-medium"
                         >
                           <span
                             aria-hidden="true"
-                            className="absolute top-[0.7em] left-0 h-px w-2.5 bg-ink"
+                            className="absolute top-[0.7em] left-0 h-px w-2.5 bg-rose"
                           />
                           {topic}
                         </li>
                       ))}
                     </ul>
 
-                    <span className="mt-8 inline-flex min-h-11 items-center gap-2 font-mono text-[0.625rem] tracking-[0.2em] text-ink uppercase">
-                      <span className="link-rule-in">Bekijk {service.title.toLowerCase()}</span>
+                    <span className="mt-auto inline-flex items-center gap-2 pt-8 text-[0.85rem] font-semibold text-rose">
+                      Bekijk {service.title.toLowerCase()}
                       <ArrowUpRight
                         aria-hidden="true"
-                        className="h-3.5 w-3.5 text-accent transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
+                        className="h-4 w-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5"
                       />
                     </span>
                   </article>

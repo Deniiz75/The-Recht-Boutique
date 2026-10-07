@@ -4,7 +4,7 @@ import { Eyebrow } from '@/components/ui/Eyebrow';
 import { ButtonLink } from '@/components/ui/ButtonLink';
 import { DataValueOnInk } from '@/components/ui/DataValue';
 import { Seal } from '@/components/ui/Seal';
-import { realEmail, realPhone } from '@/lib/placeholder';
+import { realEmail } from '@/lib/placeholder';
 
 type ContactCtaProps = {
   index?: string;
@@ -20,7 +20,6 @@ export function ContactCta({
   text = 'Een eerste gesprek is vrijblijvend. U schetst uw situatie, wij vertellen u eerlijk of en hoe wij u verder kunnen helpen.',
   uid = 'cta',
 }: ContactCtaProps) {
-  const phone = realPhone();
   const email = realEmail();
 
   return (
@@ -49,18 +48,14 @@ export function ContactCta({
               <ButtonLink href="/contact" variant="ondark">
                 Stuur een bericht
               </ButtonLink>
-              {phone ? (
+              {email ? (
                 <a
-                  href={phone.href}
-                  className="inline-flex min-h-11 items-center font-mono text-[0.75rem] tracking-[0.16em] text-white uppercase"
+                  href={`mailto:${email}`}
+                  className="inline-flex min-h-11 items-center text-[0.9375rem] text-white"
                 >
-                  <span className="link-rule-in">{phone.display}</span>
+                  <span className="link-rule-in">{email}</span>
                 </a>
-              ) : (
-                <span className="inline-flex min-h-11 items-center gap-2 font-mono text-[0.75rem] tracking-[0.16em] text-white/70 uppercase">
-                  Telefoon <DataValueOnInk value={contact.phoneDisplay} />
-                </span>
-              )}
+              ) : null}
             </div>
           </div>
 

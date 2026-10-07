@@ -6,9 +6,7 @@
  *   • render visibly marked in the UI (so nobody mistakes them for real data);
  *   • never end up in structured data, sitemaps or mailto/tel links.
  *
- * Some fields are fake without carrying the prefix (`contact.phoneHref` is
- * `tel:+310000000000`), so the phone number is judged by its display value and
- * the address is judged as a whole block.
+ * The address is judged as a whole block rather than field by field.
  */
 
 import { contact, legal } from '@/content/site';
@@ -33,12 +31,9 @@ export function realValue(value: string | null | undefined): string | undefined 
   return value;
 }
 
-/** The phone number is only usable if its *display* value is real. */
-export function realPhone(): { display: string; href: string } | undefined {
-  const display = realValue(contact.phoneDisplay);
-  if (display === undefined) return undefined;
-  return { display, href: contact.phoneHref };
-}
+/* No `realPhone()`: the site has no phone number for now, so every phone row
+   is removed at the call site rather than rendered empty. Restoring one means
+   putting the fields back in `content/site.ts` and reinstating a guard here. */
 
 /** The e-mail address, only when real. */
 export function realEmail(): string | undefined {

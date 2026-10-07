@@ -2,7 +2,7 @@ import type { ReactNode } from 'react';
 
 type EyebrowProps = {
   children: ReactNode;
-  /** Two-digit section index, set on the hairline before the label. */
+  /** Two-digit section index, set before the label. */
   index?: string;
   tone?: 'onLight' | 'onSurface' | 'onDark';
   className?: string;
@@ -10,23 +10,16 @@ type EyebrowProps = {
 };
 
 /**
- * Uppercase, letterspaced section label preceded by a short rule — the
- * recurring "eyebrow" of the identity.
+ * Small letterspaced section label.
  *
- * Set in the body sans, not mono. The eyebrow renders both the hero's
- * `— JURIDISCH ADVIESBUREAU` and the `01`/`02`/`03` labels further down the
- * same page, so it cannot be mono in one place and sans in the other. Weight
- * goes to medium because sans at 11px uppercase is lighter than DM Mono was.
- *
- * The eyebrow is 11px, so it owes 4.5:1, and that is why there are three
- * tones rather than two:
- *   onLight   — the canvas. accent is 5.68:1 there.
- *   onSurface — a cream card or band. accent is only 3.72:1 on cream, so the
- *               eyebrow switches to ink (9.94:1). Using `onLight` on a cream
- *               surface is an AA failure, not a style preference.
- *   onDark    — a navy panel. cream on ink is 9.94:1.
- * The index numeral is only dimmed on dark, where cream at 70% is still
- * 5.22:1; dimming accent on a light surface would drop it under 4.5.
+ * At 0.8rem this is small text and owes 4.5:1, which decides the tint per
+ * ground:
+ *   onSurface — white card or band. rose-light, 4.47:1.
+ *   onLight   — the cream canvas. rose-light drops to 2.83:1 there and rose
+ *               to 3.56:1, so this steps down to rose-dark at 5.12:1. The
+ *               reference build uses rose-light on both and is unreadable on
+ *               the cream sections.
+ *   onDark    — the near-black footer or panel. cream, 9.04:1.
  */
 export function Eyebrow({
   children,
@@ -35,26 +28,24 @@ export function Eyebrow({
   className,
   as: Tag = 'p',
 }: EyebrowProps) {
-  const onDark = tone === 'onDark';
   const color =
-    onDark ? 'text-surface' : tone === 'onSurface' ? 'text-ink' : 'text-accent';
-  const ruleColor =
-    onDark ? 'bg-surface/60' : tone === 'onSurface' ? 'bg-ink/45' : 'bg-gold/90';
+    tone === 'onDark'
+      ? 'text-cream'
+      : tone === 'onSurface'
+        ? 'text-rose-light'
+        : 'text-rose-dark';
 
   return (
     <Tag
-      className={`flex items-center gap-3 font-sans text-eyebrow font-medium uppercase ${color} ${className ?? ''}`}
+      className={`text-[0.8rem] font-semibold tracking-[3px] uppercase ${color} ${className ?? ''}`}
     >
-      <span aria-hidden="true" className={`block h-px w-8 shrink-0 ${ruleColor}`} />
       {index ? (
-        <span
-          aria-hidden="true"
-          className={`tabular-nums ${onDark ? 'opacity-70' : ''}`}
-        >
+        <span aria-hidden="true" className="tabular-nums">
           {index}
+          {'\u2002'}
         </span>
       ) : null}
-      <span>{children}</span>
+      {children}
     </Tag>
   );
 }

@@ -12,8 +12,13 @@ type LogoProps = {
 /**
  * Wordmark + seal, linking home.
  *
- * The light variant sits on the cream header, so the 9px tagline is rose-dark
- * (4.89:1 on cream) rather than text-medium, which measures only 4.54:1 there.
+ * The wordmark is the one place the brand pink is allowed to carry letterforms.
+ * At 17–19px it measures 4.33:1 on the header surface, under the 4.5:1 that
+ * 1.4.3 would ask of body text — a logotype is exempt, and the tagline beside
+ * it is black (16.20:1) so the lockup is never the only way to read the name.
+ *
+ * onDark keeps the wordmark white: brand on black is 3.74:1, which a 17px
+ * serif cannot carry.
  */
 export function Logo({ tone = 'onLight', uid = 'logo', className }: LogoProps) {
   const onDark = tone === 'onDark';
@@ -28,7 +33,7 @@ export function Logo({ tone = 'onLight', uid = 'logo', className }: LogoProps) {
       <span className="flex flex-col leading-none">
         <span
           className={`font-display text-[1.0625rem] leading-none tracking-tight sm:text-[1.1875rem] ${
-            onDark ? 'text-white' : 'text-ink'
+            onDark ? 'text-white' : 'text-brand'
           }`}
         >
           The Recht <span className="italic">Boutique</span>

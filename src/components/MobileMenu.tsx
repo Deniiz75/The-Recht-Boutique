@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 import { nav } from '@/content/site';
-import { realEmail, realPhone } from '@/lib/placeholder';
+import { realEmail } from '@/lib/placeholder';
 import { DataValueOnInk } from '@/components/ui/DataValue';
 import { contact } from '@/content/site';
 
@@ -80,8 +80,13 @@ export function MobileMenu() {
     };
   }, [open]);
 
-  const phone = realPhone();
   const email = realEmail();
+
+  /* Every link closes the panel explicitly. The route-based close above only
+     fires when the pathname changes, and on a one-pager the nav is entirely
+     same-page anchors — without this the menu stays open over the section it
+     just scrolled to. */
+  const close = () => setOpen(false);
 
   return (
     <div className="lg:hidden">
@@ -90,15 +95,15 @@ export function MobileMenu() {
         type="button"
         aria-expanded={open}
         aria-controls={panelId}
+        aria-label={open ? 'Menu sluiten' : 'Menu openen'}
         onClick={() => setOpen(!open)}
-        className="inline-flex h-11 min-w-11 items-center gap-2 border border-ink px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-ink uppercase transition-colors hover:bg-ink hover:text-white"
+        className="relative z-[1001] inline-flex h-11 w-11 items-center justify-center rounded-full text-rose transition-colors hover:bg-rose-soft"
       >
         {open ? (
-          <X aria-hidden="true" className="h-4 w-4" />
+          <X aria-hidden="true" className="h-6 w-6" />
         ) : (
-          <Menu aria-hidden="true" className="h-4 w-4" />
+          <Menu aria-hidden="true" className="h-6 w-6" />
         )}
-        {open ? 'Sluiten' : 'Menu'}
       </button>
 
       <div
@@ -108,71 +113,60 @@ export function MobileMenu() {
         role="dialog"
         aria-modal="true"
         aria-label="Hoofdmenu"
-        className="on-dark fixed inset-0 z-100 flex flex-col overflow-y-auto bg-ink px-5 pt-6 pb-12 text-white"
+        className="fixed inset-0 z-[999] flex flex-col overflow-y-auto bg-cream px-6 pt-6 pb-12"
       >
         <div className="flex items-center justify-between">
-          <span className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
-            Menu
+          <span className="font-serif text-[1.3rem] font-bold text-rose">
+            The Recht <span className="font-normal text-text-medium">Boutique</span>
           </span>
           <button
             type="button"
-            onClick={() => setOpen(false)}
-            className="inline-flex h-11 min-w-11 items-center gap-2 border border-white/40 px-3 font-mono text-[0.6875rem] tracking-[0.18em] text-white uppercase transition-colors hover:bg-white hover:text-ink"
+            onClick={close}
+            aria-label="Menu sluiten"
+            className="inline-flex h-11 w-11 items-center justify-center rounded-full text-rose transition-colors hover:bg-rose-soft"
           >
-            <X aria-hidden="true" className="h-4 w-4" />
-            Sluiten
+            <X aria-hidden="true" className="h-6 w-6" />
           </button>
         </div>
 
-        <nav aria-label="Hoofdnavigatie (mobiel)" className="mt-10">
-          <ul className="border-t border-white/15">
-            {nav.map((item, index) => (
-              <li key={item.href} className="border-b border-white/15">
+        <nav
+          aria-label="Hoofdnavigatie (mobiel)"
+          className="flex flex-1 flex-col justify-center"
+        >
+          <ul className="flex flex-col items-center gap-8">
+            {nav.map((item) => (
+              <li key={item.href}>
                 <Link
                   href={item.href}
-                  className="flex items-baseline gap-4 py-5 font-display text-[1.75rem] leading-tight text-white transition-colors hover:text-surface"
+                  onClick={close}
+                  className="font-serif text-[1.6rem] font-semibold text-text-medium transition-colors hover:text-rose"
                 >
-                  <span
-                    aria-hidden="true"
-                    className="font-mono text-[0.625rem] tracking-[0.2em] text-surface/70 tabular-nums"
-                  >
-                    {String(index + 1).padStart(2, '0')}
-                  </span>
                   {item.label}
                 </Link>
               </li>
             ))}
-            <li className="border-b border-white/15">
+            <li>
               <Link
-                href="/contact"
-                className="flex items-baseline gap-4 py-5 font-display text-[1.75rem] leading-tight text-surface"
+                href="/#contact"
+                onClick={close}
+                className="inline-flex min-h-12 items-center rounded-full bg-rose px-7 py-3 text-[0.9rem] font-semibold text-white shadow-[0_4px_20px_rgba(207,0,68,0.35)] transition-colors hover:bg-rose-dark"
               >
-                <span
-                  aria-hidden="true"
-                  className="font-mono text-[0.625rem] tracking-[0.2em] text-surface/70 tabular-nums"
-                >
-                  {String(nav.length + 1).padStart(2, '0')}
-                </span>
-                Contact
+                Gratis kennismaking
               </Link>
             </li>
           </ul>
         </nav>
 
-        <div className="mt-auto pt-12">
-          <p className="font-mono text-[0.625rem] tracking-[0.28em] text-surface uppercase">
+        <div className="mt-auto border-t border-rose/12 pt-8 text-center">
+          <p className="text-[0.8rem] font-semibold tracking-[3px] text-rose-dark uppercase">
             Direct contact
           </p>
-          <div className="mt-4 flex flex-col gap-2 text-white/90">
-            {phone ? (
-              <a href={phone.href} className="link-rule w-fit py-1 text-lg">
-                {phone.display}
-              </a>
-            ) : (
-              <DataValueOnInk value={contact.phoneDisplay} />
-            )}
+          <div className="mt-4 flex flex-col gap-2 text-text-medium">
             {email ? (
-              <a href={`mailto:${email}`} className="link-rule w-fit py-1 text-lg">
+              <a
+                href={`mailto:${email}`}
+                className="link-rule mx-auto w-fit py-1 text-lg"
+              >
                 {email}
               </a>
             ) : (
